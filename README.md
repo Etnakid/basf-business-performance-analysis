@@ -20,7 +20,7 @@ Place the unchanged downloaded workbooks in `data/raw/`. This directory is exclu
 
 The M query reads the ten-year sheet, skips the title rows, promotes the year header, selects exactly nine named source rows, removes all other content, unpivots 2016–2025, strips only the known trailing footnote letters `a`, `b`, `e`, parses numbers without altering their magnitude, and explicitly retains the 2016 ROCE null. Unexpected nonnumeric text fails refresh rather than silently changing a value. Its output is sorted by year and KPI.
 
-The committed CSV was transcribed directly from the supplied source workbook and independently checked against those source cells. **The M query has not been run in Excel or Power BI in this environment**; run the refresh and compare its output before treating this as an end-to-end Power Query execution. See [source mapping and limitations](docs/data_preparation.md).
+The committed CSV was transcribed directly from the supplied source workbook and independently checked against those source cells. The M query was subsequently run in Power BI Desktop against the unchanged local BASF workbook: its preview showed four columns, 90 rows, the 2016 ROCE null, and the expected displayed values for 2016–2018. See [source mapping and limitations](docs/data_preparation.md). The Power BI preview check does not constitute a separate full export-and-compare of all 90 query results.
 
 ## Next milestone
 

@@ -33,4 +33,4 @@ Source values such as `61,223a` become `61223`; `12.0b` becomes `12.0`; negative
 
 The committed CSV was checked against the exact named rows and year columns in the untouched ten-year workbook: **90 records**, years 2016–2025, nine distinct KPIs per year, no duplicate year/KPI pair, and exactly one missing value (2016 ROCE). Representative cross-checks: 2016 Sales 57,550; 2024 Sales 61,444 after footnote removal; 2025 Sales 59,657; 2025 EBITDA 5,618; 2025 free cash flow 1,342; 2025 ROCE 5.8.
 
-The Power Query script is the reproducible cleaning specification. A refresh in Excel or Power BI, followed by comparison against the committed CSV, remains the final execution check.
+The Power Query script was executed in Power BI Desktop on September 29, 2026 against the unchanged ten-year workbook. The resulting preview displayed four columns and **90 rows**, including null for 2016 ROCE. The visible 2016–2018 values matched the committed CSV, including the footnote-marked 2017 and 2018 figures. A full export-and-compare of every Power Query result against the CSV was not performed; the CSV itself was checked cell by cell against the source workbook independently.
