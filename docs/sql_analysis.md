@@ -69,9 +69,13 @@ Checks also covered tied margin extrema, zero and negative prior values, a
 missing prior calendar year and a current null. Synthetic changes were rolled
 back and never written to the project CSV.
 
-The queries use syntax supported by PostgreSQL 17, the owner's local version.
-The eight analysis queries have not yet been executed on that local instance;
-the table creation, import and initial count/null checks have been verified there.
+On October 20, 2026, all eight analysis queries were also executed successfully
+in pgAdmin on the owner's local PostgreSQL 17 instance. Screenshots confirmed
+the same row counts (10, 10, 2, 10, 10, 9, 2, 9) and the displayed results,
+including 2016 ROCE null, margin extrema, the 2021 sales growth rank, loss years
+and the visible 2024–2025 comparisons. This manual review was not a full
+automated comparison of every local output cell. The local table creation,
+import and initial count/null checks were verified earlier in the same session.
 Power BI dashboards and DAX remain the next phase.
 
 ## SQL references

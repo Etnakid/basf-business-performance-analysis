@@ -40,9 +40,11 @@ sales changes, net loss years and the 2025 versus 2024 comparison. Sales fell
 points. These describe the published series and must be read with BASF's
 restatement notes and KPI definitions.
 
-All SQL statements were tested with the CSV in PGlite (PostgreSQL 18.6). The
-analysis queries still need execution on the owner's local PostgreSQL 17
-instance; local setup and the initial import checks have already been verified.
+All SQL statements were tested with the CSV in PGlite (PostgreSQL 18.6). On
+October 20, 2026, all eight analysis queries were also executed successfully in
+pgAdmin on the owner's local PostgreSQL 17 instance. Screenshots confirmed the
+expected row counts and the displayed results; this was not a full automated
+comparison of every local output cell.
 
 ## Next milestone
 
