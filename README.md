@@ -1,51 +1,148 @@
 # BASF Business Performance Analysis
 
-A focused Junior Data Analyst / BI Analyst portfolio project using nine annual financial KPI series for 2016–2025. This repository contains **data preparation and SQL analysis**. Power BI dashboard development is the next phase.
+**English** | [Deutsch](README.de.md)
 
-## Sources and files
+I live in Ludwigshafen am Rhein, where BASF is the city’s largest industrial presence. I wanted to take a closer look at the company behind such a prominent part of my surroundings and understand how its financial performance has changed over time.
 
-- [BASF Report 2025, Ten-Year Summary](https://report.basf.com/2025/en/overviews/ten-year-summary.html), workbook `10y-overview-basf-ar25.xlsx`, sheet `10y-overview`.
-- [BASF Report 2025, Download Center](https://report.basf.com/2025/en/services/downloads.html), workbook `all-tables-basf-ar25.xlsx`; its `10y-overview` sheet duplicates the summary and its 2024–2025 detail sheets provide definition checks.
+For this project, I chose to focus exclusively on financial data. Sales, profitability, cash flow, investments and returns were the most relevant measures for the analysis I wanted to carry out. Keeping this focus also helped me build a manageable project without spreading the analysis across too many topics.
 
-Place the unchanged downloaded workbooks in `data/raw/`. This directory is excluded from Git. The two source copies inspected for this preparation have SHA-256 hashes `b3ae575749ca0740e837174169786c6c6ab10e0440a021e841ff488a1281ef11` and `3c51b713e17a113d0dd03128eea3eae6974395ba6f4775e3c014e52dcd0d8512`, respectively.
+The project covers **2016–2025** and combines **Power Query, PostgreSQL and Power BI**. Data preparation and SQL analysis are complete; the Power BI report is the next step.
 
-`data/processed/basf_kpis_2016_2025.csv` has columns `year,kpi,value,unit`. It contains 90 year/KPI combinations and one empty `value`: ROCE in 2016, shown as a dash by BASF. Monetary figures retain BASF's **million euros**; margins and ROCE retain **percent units** (for example 11.8 means 11.8%, not 0.118). Values are never imputed.
+## What I wanted to understand
 
-## Reproduce the Power Query transformation
+I organised the analysis around eight questions:
 
-1. Download the two official Excel files and put them unchanged in `data/raw/`.
-2. In Excel or Power BI Desktop, create a blank Power Query, open Advanced Editor and paste `power_query/basf_kpis.m`.
-3. Change only `RawFile` at the top to the full local path of `10y-overview-basf-ar25.xlsx`, then refresh.
-4. Verify 90 rows, ten years, nine KPIs per year and only the 2016 ROCE null. Export the resulting table as UTF-8 CSV with header `year,kpi,value,unit` for the processed file.
+1. How did BASF’s sales change between 2016 and 2025?
+2. How did EBITDA, EBIT and net income evolve?
+3. Which years recorded the highest and lowest EBITDA margin before special items?
+4. How did operating cash flow and free cash flow change?
+5. How did investments and ROCE evolve?
+6. Which years recorded the largest annual sales increases and declines?
+7. In which years did BASF report a net loss?
+8. How did 2025 compare with 2024 across the nine selected KPIs?
 
-The M query reads the ten-year sheet, skips the title rows, promotes the year header, selects exactly nine named source rows, removes all other content, unpivots 2016–2025, strips only the known trailing footnote letters `a`, `b`, `e`, parses numbers without altering their magnitude, and explicitly retains the 2016 ROCE null. Unexpected nonnumeric text fails refresh rather than silently changing a value. Its output is sorted by year and KPI.
+## Data sources
 
-The committed CSV was transcribed directly from the supplied source workbook and independently checked against those source cells. The M query was subsequently run in Power BI Desktop against the unchanged local BASF workbook: its preview showed four columns, 90 rows, the 2016 ROCE null, and the expected displayed values for 2016–2018. See [source mapping and limitations](docs/data_preparation.md). The Power BI preview check does not constitute a separate full export-and-compare of all 90 query results.
+I used two official Excel workbooks from the **BASF Report 2025**:
 
-## PostgreSQL and SQL analysis
+- [Ten-Year Summary](https://report.basf.com/2025/en/overviews/ten-year-summary.html): `10y-overview-basf-ar25.xlsx`, containing the historical series used in the analysis.
+- [Download Center](https://report.basf.com/2025/en/services/downloads.html): `all-tables-basf-ar25.xlsx`, used to cross-check the summary and clarify selected financial definitions.
 
-The processed CSV is imported into `public.basf_kpis` in the database
-`basf_business_performance`. The local import was verified: 90 rows, ten years,
-nine KPIs and only the 2016 ROCE null.
+The original workbooks are preserved locally in `data/raw/` and excluded from GitHub. The repository contains the processed dataset, transformation script, SQL queries and documentation.
 
-- [Table definition](sql/01_create_table.sql)
-- [Data checks](sql/02_data_checks.sql)
-- [Eight business analysis queries](sql/03_business_analysis.sql)
-- [Setup and import instructions](docs/postgresql_setup.md)
-- [Questions, findings, interpretation and validation](docs/sql_analysis.md)
+## The nine KPIs I selected
 
-The queries cover sales, profitability, cash flow, investment/ROCE trends, annual
-sales changes, net loss years and the 2025 versus 2024 comparison. Sales fell
-2.91% in 2025 while net income rose 24.73%; the reported margin fell 0.8 percentage
-points. These describe the published series and must be read with BASF's
-restatement notes and KPI definitions.
+| KPI | Unit |
+| --- | --- |
+| Sales | Million EUR |
+| EBITDA | Million EUR |
+| EBIT | Million EUR |
+| Net Income | Million EUR |
+| EBITDA Margin before special items | % |
+| Operating Cash Flow | Million EUR |
+| Free Cash Flow | Million EUR |
+| Investments: additions to property, plant and equipment and intangible assets | Million EUR |
+| ROCE | % |
 
-All SQL statements were tested with the CSV in PGlite (PostgreSQL 18.6). On
-October 20, 2026, all eight analysis queries were also executed successfully in
-pgAdmin on the owner's local PostgreSQL 17 instance. Screenshots confirmed the
-expected row counts and the displayed results; this was not a full automated
-comparison of every local output cell.
+I kept BASF’s original units and definitions. In particular, the reported EBITDA margin is **before special items**, while the EBITDA series is unadjusted. These two measures should not be assumed to reconcile through a simple division.
 
-## Next milestone
+The investment series represents **additions to assets**. It differs from the cash payments used in BASF’s free cash flow calculation.
 
-Develop the Power BI report using the same nine KPI series and eight questions.
+## How I prepared the data
+
+I used an AI-assisted workflow to help inspect the source files, prepare the dataset, write the Power Query M script and develop the SQL queries and documentation. I then executed the Power Query transformation in Power BI Desktop and the SQL queries in my local PostgreSQL database, reviewing the results along the way.
+
+The Power Query script:
+
+- Reads the original ten-year workbook.
+- Selects only the nine financial KPIs.
+- Removes headings, notes and unrelated rows.
+- Converts the year columns into a long table.
+- Removes known footnote letters attached to numbers while preserving their values.
+- Retains missing data without replacing it with estimates.
+
+The processed dataset has this structure:
+
+```text
+year | kpi | value | unit
+```
+
+It contains **90 rows: ten years × nine KPIs**.
+
+BASF does not provide a ROCE value for 2016 in the source table. I kept that observation as a missing value, represented by an empty field in the CSV and `NULL` in PostgreSQL.
+
+For transparency, the committed CSV was prepared directly from the source workbook with AI assistance and checked against its cells. The Power Query script was subsequently executed successfully and its preview reviewed. I did not perform a full automated comparison between an exported Power Query result and the committed CSV.
+
+The exact source rows, KPI definitions and validation details are documented in [Data preparation notes](docs/data_preparation.md).
+
+## SQL analysis
+
+I imported the processed CSV into the `basf_business_performance` database and stored it in `public.basf_kpis`.
+
+Before analysing the data, I checked that the import contained:
+
+- 90 rows.
+- Ten years, from 2016 to 2025.
+- Nine distinct KPIs.
+- Exactly one missing value: ROCE in 2016.
+
+The SQL analysis uses filtering, conditional aggregation, common table expressions, window functions and a self-join to answer the eight questions.
+
+All eight queries were executed successfully in **PostgreSQL 17 through pgAdmin**. Their row counts and displayed results were reviewed against the expected outputs. The scripts were also tested separately using the same CSV in PGlite, based on PostgreSQL 18.6.
+
+The SQL files are available here:
+
+- [Create the table](sql/01_create_table.sql)
+- [Check the imported data](sql/02_data_checks.sql)
+- [Answer the eight business questions](sql/03_business_analysis.sql)
+
+## What the analysis shows
+
+A few findings stood out in the published data:
+
+- Sales rose from **€57,550 million in 2016 to €59,657 million in 2025**, an increase of **3.66%**, with substantial fluctuations between those years.
+- The largest annual sales increase occurred in **2021 (+32.88%)**, while the largest decline occurred in **2023 (−21.10%)**.
+- The EBITDA margin before special items was highest in **2016 (17.9%)** and lowest in **2025 (11.0%)**.
+- BASF reported net losses in **2020 and 2022**. In 2022, EBIT remained positive despite the net loss.
+- In **2025 versus 2024**, sales fell **2.91%** and operating cash flow fell **19.23%**, while net income rose **24.73%** and free cash flow rose **79.41%**.
+
+These results helped me see why several financial measures need to be considered together: sales, profit and cash flow can move in different directions.
+
+The complete findings and interpretation rules are available in [SQL analysis notes](docs/sql_analysis.md).
+
+## Important limitations
+
+BASF marks selected historical figures as restated or adjusted, including figures for **2017, 2018 and 2024** associated with discontinued operations. I used the values as published in the 2025 ten-year summary and documented these notes.
+
+The changes calculated here therefore describe the **published series**. They should not automatically be interpreted as like-for-like growth.
+
+I also distinguish between **percent changes** and **percentage-point changes**. For example, ROCE moving from 5.1% to 5.8% is an increase of **0.7 percentage points**.
+
+This dataset supports descriptive comparisons. By itself, it cannot explain the causes of a loss, establish whether an investment decision was successful or demonstrate that changes in investment caused changes in ROCE.
+
+## Repository structure
+
+```text
+data/
+  processed/     Clean financial dataset
+
+power_query/     Reproducible Power Query M script
+sql/             Table definition, data checks and analysis queries
+docs/            Sources, methodology, findings and limitations
+```
+
+The original Excel workbooks are kept locally in `data/raw/`, which is excluded from Git.
+
+## Reproducing the project
+
+1. Download the two official BASF workbooks and place them in `data/raw/`.
+2. Create a blank query in Power BI Desktop or Excel.
+3. Open Advanced Editor and paste `power_query/basf_kpis.m`.
+4. Set `RawFile` to the local path of the ten-year workbook and refresh.
+5. Verify the expected 90 rows and the missing ROCE value for 2016.
+6. Follow the [PostgreSQL setup instructions](docs/postgresql_setup.md) to create the table and import the processed CSV.
+7. Run the data checks, then execute the eight analysis queries individually.
+
+## Next step
+
+I will build a Power BI report around the same eight questions, with views covering the latest year, sales and profitability, and cash flow and investments.
