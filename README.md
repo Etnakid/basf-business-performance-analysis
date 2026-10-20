@@ -1,6 +1,6 @@
 # BASF Business Performance Analysis
 
-A focused Junior Data Analyst / BI Analyst portfolio project using nine annual financial KPI series for 2016–2025. This repository currently contains **data preparation only**; analysis and reporting are later phases.
+A focused Junior Data Analyst / BI Analyst portfolio project using nine annual financial KPI series for 2016–2025. This repository contains **data preparation and SQL analysis**. Power BI dashboard development is the next phase.
 
 ## Sources and files
 
@@ -22,6 +22,28 @@ The M query reads the ten-year sheet, skips the title rows, promotes the year he
 
 The committed CSV was transcribed directly from the supplied source workbook and independently checked against those source cells. The M query was subsequently run in Power BI Desktop against the unchanged local BASF workbook: its preview showed four columns, 90 rows, the 2016 ROCE null, and the expected displayed values for 2016–2018. See [source mapping and limitations](docs/data_preparation.md). The Power BI preview check does not constitute a separate full export-and-compare of all 90 query results.
 
+## PostgreSQL and SQL analysis
+
+The processed CSV is imported into `public.basf_kpis` in the database
+`basf_business_performance`. The local import was verified: 90 rows, ten years,
+nine KPIs and only the 2016 ROCE null.
+
+- [Table definition](sql/01_create_table.sql)
+- [Data checks](sql/02_data_checks.sql)
+- [Eight business analysis queries](sql/03_business_analysis.sql)
+- [Setup and import instructions](docs/postgresql_setup.md)
+- [Questions, findings, interpretation and validation](docs/sql_analysis.md)
+
+The queries cover sales, profitability, cash flow, investment/ROCE trends, annual
+sales changes, net loss years and the 2025 versus 2024 comparison. Sales fell
+2.91% in 2025 while net income rose 24.73%; the reported margin fell 0.8 percentage
+points. These describe the published series and must be read with BASF's
+restatement notes and KPI definitions.
+
+All SQL statements were tested with the CSV in PGlite (PostgreSQL 18.6). The
+analysis queries still need execution on the owner's local PostgreSQL 17
+instance; local setup and the initial import checks have already been verified.
+
 ## Next milestone
 
-SQL analysis and Power BI work are outside this data-preparation phase.
+Develop the Power BI report using the same nine KPI series and eight questions.
