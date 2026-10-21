@@ -145,6 +145,19 @@ Die Originaldateien liegen lokal unter `data/raw/`. Dieser Ordner ist von Git au
 
 Die technischen Detaildokumente und die Kommentare in den SQL-Dateien sind auf Englisch verfasst.
 
+## Entwurf für den Bericht
+
+Ich habe ein einseitiges Layout im Querformat mit dunkelgrünem Hintergrund,
+abgerundeten Kennzahlenkarten, weich eingeblendeten Fotos aus Ludwigshafen und
+dem offiziellen BASF-Logo entworfen. Die Vorschau verwendet denselben Datensatz
+und bietet eine Jahresauswahl für 2024/2025. Sie ist ein **interaktiver
+Designentwurf und noch kein fertiger Power-BI-Bericht**.
+
+Die [Vorschau](powerbi/design/preview.html) herunterladen und im Browser öffnen;
+GitHub zeigt ihren Quelltext an, führt sie aber nicht aus. Die
+[Designhinweise und Bildnachweise](docs/powerbi_design.md) dokumentieren den
+Entwurf. Die Umsetzung in Power BI steht noch aus.
+
 ## Nächster Schritt
 
 Ich werde einen Power-BI-Bericht zu denselben acht Fragen erstellen. Er soll das jüngste Geschäftsjahr sowie die Entwicklung von Umsatz und Profitabilität, Cashflow und Investitionen darstellen.

@@ -143,6 +143,17 @@ The original Excel workbooks are kept locally in `data/raw/`, which is excluded 
 6. Follow the [PostgreSQL setup instructions](docs/postgresql_setup.md) to create the table and import the processed CSV.
 7. Run the data checks, then execute the eight analysis queries individually.
 
+## Report design preview
+
+I designed a single-page, landscape layout with a dark green background,
+rounded KPI cards, faded Ludwigshafen photographs and the official BASF logo.
+The preview uses the same financial dataset, with a 2024/2025 reporting-year
+selector. It is an **interactive design prototype, not a completed Power BI report**.
+
+Download [the preview](powerbi/design/preview.html) and open it in a browser;
+GitHub displays its source rather than running it. See the [design notes and asset
+credits](docs/powerbi_design.md). The native Power BI implementation is still pending.
+
 ## Next step
 
 I will build a Power BI report around the same eight questions, with views covering the latest year, sales and profitability, and cash flow and investments.
