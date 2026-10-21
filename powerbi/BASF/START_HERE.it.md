@@ -1,16 +1,12 @@
 # Aprire il progetto BASF
 
-Questa è la versione V6 del progetto nativo Power BI, con sfondo geometrico
-smeraldo/teal, Ludwigshafen integrata sopra le foto e «Report year» più vicino
-al selettore. La V5 ha confermato il 2025 preselezionato e note finali più leggibili.
-L'allineamento delle nuove scritte e lo sfondo V6 vanno ancora verificati in Desktop.
-Il precedente file di preparazione
-non viene modificato.
+Questo è il report nativo BASF approvato dopo la verifica in Power BI Desktop.
+Sono stati controllati il 2025, il cambio al 2024 e il ROCE 2016 mancante.
+Il proprietario del progetto ha eseguito la query DAX e comunicato 22 risultati PASS.
+Il PDF originale e le immagini finali del portfolio sono ancora da esportare.
 
-Pacchetto V6: estrailo in una cartella nuova. Non sovrascrivere la prima
-prova già aperta o aggiornata da Power BI. Chiudi quella finestra prima di aprire
-questo progetto. Se compare ancora l'avviso rosso sui metadati avanzati, non premere
-«Aggiorna report»: mostra l'avviso per proseguire con la diagnosi.
+Mantieni insieme il file PBIP e le due cartelle del report e del modello.
+Il precedente file di preparazione non viene modificato.
 
 1. Estrai tutto lo ZIP: tasto destro sullo ZIP > **Estrai tutto** > **Estrai**.
 2. Nella cartella `BASF`, fai doppio clic su **BASF.pbip**.
@@ -39,7 +35,8 @@ Prova il selettore con il 2024: Sales deve diventare 61.444, mentre i grafici
 mantengono il periodo 2016–2025. Selezionando il 2016, ROCE deve restare vuoto.
 
 Il file `verify_in_desktop.dax` contiene controlli da eseguire nella vista Query DAX.
-Sono controlli preparati, ancora da eseguire nel motore di Power BI.
+I 22 controlli risultano PASS secondo la verifica comunicata dal proprietario.
+Puoi rieseguirli dopo ogni modifica al modello.
 
 Non servono password, PostgreSQL o percorsi di file Excel per questo pacchetto:
 contiene una copia esatta dei dati puliti già presenti nel repository.

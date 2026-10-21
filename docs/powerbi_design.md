@@ -9,18 +9,12 @@ implemented as part of this design milestone. The earlier local
 `BASF_Data_Preparation.pbix` contains the Power Query preparation only and is not
 included in this repository.
 
-A native PBIP implementation has since been prepared in `powerbi/BASF/`.
-Its definitions have passed structural/schema checks. The V2 Desktop review
-confirmed the 2025 values and native charts; V3 corrects the absent decorative
-background and font fallback. V3 rendering was confirmed; V4 addresses overlapping
-callouts/units and strengthens KPI headings. V4 spacing was confirmed; V5 sets an
-explicit initial 2025 selection and enlarges footer notes, confirmed in Desktop.
-V6 adds emerald/teal geometric facets and perimeter traces, integrates the
-Ludwigshafen caption with the photos and places the report-year caption nearer
-the dropdown. Final V6 appearance and acceptance checks remain
-pending. See [implementation status and opening
-instructions](powerbi_implementation.md). The browser preview remains a separate
-design reference.
+The native PBIP report is now implemented in `powerbi/BASF/` and its final
+appearance was approved after review in Power BI Desktop. Year selection and
+missing-value handling were checked in screenshots; the owner reported 22 PASS
+results for the DAX acceptance query. See the [implementation and validation
+record](powerbi_implementation.md). The browser preview remains a separate early
+design reference; native PDF and final portfolio image exports are still pending.
 
 ## Approved direction
 
@@ -78,9 +72,8 @@ changing its proportions or removing its claim.
 - Daytime aerial photograph: © BASF, [Ludwigshafen Verbund site, 2018 press release](https://www.basf.com/no/en/media/news-releases/2018/04/p-18-183).
 - Typeface: [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk).
 
-## Next implementation step
+## Remaining presentation step
 
-Open and refresh the prepared native Power BI project, run its DAX acceptance
-checks and review year selection, fonts and legibility before exporting or
-treating the dashboard as complete. Implementation adaptations are recorded in
-`powerbi_implementation.md`.
+Export the implemented native report to PDF and capture clean screenshots before
+adding static portfolio previews. Refer to `powerbi_implementation.md` for the
+completed checks and their evidence limits.

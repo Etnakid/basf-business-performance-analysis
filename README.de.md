@@ -160,29 +160,34 @@ GitHub zeigt ihren Quelltext an, führt sie aber nicht aus. Die
 [Designhinweise und Bildnachweise](docs/powerbi_design.md) dokumentieren den
 Entwurf.
 
-## Natives Power-BI-Projekt — Desktop-Prüfung steht aus
+## Nativer Power-BI-Bericht
 
-Ich habe [das PBIP-Projekt](powerbi/BASF/BASF.pbip) mit neun Kennzahlenkarten,
-vier historischen Diagrammen und einer Jahresauswahl vorbereitet. Es enthält
-einen portablen Stand der aufbereiteten CSV-Datei und benötigt dafür keine
-Datenbank-Zugangsdaten oder lokalen Quelldateipfade. Das separate Power-Query-M-Skript
-bleibt der dokumentierte Weg zur Bereinigung der Originaldateien.
+Ich habe [den PBIP-Bericht](powerbi/BASF/BASF.pbip) mit neun Kennzahlenkarten,
+vier historischen Diagrammen und einer Jahresauswahl erstellt. Die einzelne
+Seite im Querformat verbindet einen geometrischen Hintergrund in Smaragdgrün/Teal,
+abgerundete Karten, weich eingeblendete Fotos aus Ludwigshafen und das originale
+BASF-Logo.
 
-Die Projektdefinitionen haben Strukturprüfungen und die Validierung anhand der
-Microsoft-JSON-Schemata bestanden. Die erste Desktop-Prüfung bestätigte die neun
-Werte für 2025 und vier native Diagramme. Anschließend habe ich in V3 die
-Hintergrundbild-Struktur und die Schrift-Ausweichlösung korrigiert.
-Die V3-Prüfung bestätigte den Hintergrund. V4 vergrößert die Kennzahlentitel und
-trennt Werte und Einheiten deutlicher. Die V4-Aufnahme bestätigte diese Abstände;
-V5 speichert 2025 als sichtbare Vorauswahl und vergrößert die Fußnoten.
-Die V5-Aufnahme bestätigte diese Anpassungen. V6 ergänzt einen geometrischen
-Hintergrund in Smaragdgrün/Teal und verbessert die Platzierung von Orts- und Jahresbeschriftung.
-**V6-Darstellung, Jahresauswahl und vollständige DAX-Prüfungen stehen noch aus.** Der Bericht ist daher noch kein
-fertig validiertes Dashboard. Die [Anleitung und Prüfschritte](docs/powerbi_implementation.md)
-dokumentieren den aktuellen Stand.
+Der Bericht enthält einen portablen Stand der aufbereiteten CSV-Datei. Zum Öffnen
+sind keine Datenbank-Zugangsdaten oder lokalen Quelldateipfade erforderlich. Das
+separate Power-Query-M-Skript bleibt der dokumentierte Weg zur Bereinigung der
+Originaldateien.
 
-## Nächster Schritt
+Ich habe den Bericht in Power BI Desktop geprüft: 2025 ist vorausgewählt, die
+Auswahl von 2024 aktualisiert die Karten bei unverändertem Zeitraum 2016–2025 in
+den Diagrammen, und der fehlende ROCE-Wert für 2016 bleibt leer. Außerdem habe ich
+die bereitgestellte DAX-Prüfabfrage ausgeführt und **22 PASS-Ergebnisse** gemeldet.
+Das [Prüfprotokoll](docs/powerbi_implementation.md) unterscheidet zwischen den
+geprüften Bildschirmaufnahmen und dem im Chat gemeldeten DAX-Ergebnis.
+Strukturprüfungen bestätigten zusätzlich den exakten CSV-Datenstand und die
+Microsoft-JSON-Schemata. Ein nativer PDF-Export und die endgültigen Portfolio-
+Screenshots stehen noch aus.
 
-Ich werde den nativen Bericht in Power BI Desktop öffnen und prüfen, die
-Interaktionen und Finanzwerte kontrollieren und anschließend die endgültigen
-Screenshots für mein Portfolio erstellen.
+Die [Power-BI-Dokumentation](docs/powerbi_implementation.md) beschreibt Einrichtung,
+Kennzahlendefinitionen und Prüfabfrage.
+
+## Verbleibende Präsentationsarbeit
+
+Ich werde einen nativen PDF-Export und übersichtliche Bildschirmaufnahmen für
+Leser ergänzen, die Power BI Desktop nicht verwenden. Das Repository enthält
+bereits die editierbaren Definitionen des Berichts und des semantischen Modells.

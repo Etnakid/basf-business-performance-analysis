@@ -156,27 +156,30 @@ Download [the preview](powerbi/design/preview.html) and open it in a browser;
 GitHub displays its source rather than running it. See the [design notes and asset
 credits](docs/powerbi_design.md).
 
-## Native Power BI project — awaiting Desktop verification
+## Native Power BI report
 
-I have prepared [the PBIP project](powerbi/BASF/BASF.pbip), with nine KPI cards,
-four history charts and a reporting-year selector. It includes a portable
-snapshot of the processed CSV, so opening it does not require database credentials
-or machine-specific source paths. The original workbook-cleaning workflow remains
-the separate Power Query M script.
+I built [the PBIP report](powerbi/BASF/BASF.pbip) with nine KPI cards, four history
+charts and a reporting-year selector. The single landscape page combines an
+emerald/teal geometric background, rounded cards, faded Ludwigshafen photographs
+and the original BASF logo.
 
-The project definitions passed structural and Microsoft JSON schema checks.
-The first Desktop review confirmed the nine 2025 values and four native charts.
-I then corrected the background-image structure and font fallback in V3.
-The V3 review confirmed the background; V4 strengthens KPI headings and separates
-values from their unit labels. The V4 screenshot confirmed that spacing; V5 saves
-2025 as the visible initial selection and enlarges the footer notes.
-The V5 screenshot confirmed these refinements. V6 adds geometric emerald/teal
-background details and improves placement of the location and year captions.
-**V6 appearance, year interactions and the full DAX acceptance checks remain pending**;
-this is not yet a completed or validated dashboard. See the
-[opening instructions, measures and acceptance checks](docs/powerbi_implementation.md).
+The report includes a portable snapshot of the processed CSV. Opening it does not
+require database credentials or machine-specific source paths. The original
+workbook-cleaning workflow remains the separate Power Query M script.
 
-## Next step
+I checked the report in Power BI Desktop: 2025 is selected initially, switching
+to 2024 updates the cards while the charts retain 2016–2025, and selecting 2016
+keeps the missing ROCE observation blank. I also ran the supplied DAX acceptance
+query and reported **22 PASS results**. The [validation record](docs/powerbi_implementation.md)
+distinguishes the screenshots reviewed from the DAX result reported in chat.
+Structural checks also confirmed the exact CSV snapshot and Microsoft JSON schema
+compliance. A native PDF export and final portfolio screenshots are still pending.
 
-I will open and validate the native report in Power BI Desktop, check its
-interactions and financial results, then capture the final portfolio screenshots.
+For setup, metric definitions and the validation query, see the
+[Power BI implementation notes](docs/powerbi_implementation.md).
+
+## Remaining presentation work
+
+I will add a native PDF export and clean report screenshots for readers who do
+not use Power BI Desktop. The repository already contains the editable report
+and semantic model definitions.

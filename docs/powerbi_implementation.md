@@ -2,54 +2,39 @@
 
 ## Status
 
-The native project is prepared in `powerbi/BASF/BASF.pbip`. It contains a semantic
-model, DAX measures and a one-page PBIR report definition. The V2 package has
-opened and refreshed in the user's Desktop: its screenshot shows all nine 2025
-card values matching the CSV and all four native history charts, without the
-earlier field errors. Full DAX acceptance tests and interaction checks remain
-pending. No final PBIX or finished portfolio export is claimed at this stage.
+The one-page native report is implemented in `powerbi/BASF/BASF.pbip` and has
+been opened and refreshed in Power BI Desktop. The project owner approved its
+final appearance. Screenshots were reviewed for the 2025 default, selection of
+2024 while retaining the full chart history, and missing ROCE in 2016.
 
-First Desktop attempt: the project opened, but requested an enhanced-metadata
-upgrade; after that upgrade its tables disappeared and visuals reported
-`Missing_References`. The decorative background/theme were also absent.
-The corrected package explicitly sets `defaultPowerBIDataSourceVersion` to
-`powerBI_V3`, uses semantic-model definition version 4.0 and matches image/theme
-resource identifiers to their filenames. The corrected package still requires
-a fresh Desktop opening and refresh; its success is not yet established.
-Microsoft's [semantic model definition example](https://learn.microsoft.com/en-us/rest/api/fabric/articles/item-management/definitions/semantic-model-definition)
-shows the enhanced-metadata model property.
+The project owner ran `powerbi/BASF/verify_in_desktop.dax` in Desktop DAX Query
+View and reported **all 22 checks as PASS** on 21 October 2026. This result was
+reported in chat; no result-table screenshot or machine-readable export was
+provided for independent inspection. This distinction is retained in the
+validation record below.
 
-V2 Desktop review then confirmed that data and chart bindings worked, but the
-page background was still absent. V3 corrects the background's required nested
-`image.image` structure, including expression-wrapped name and scaling. The
-previous flat structure passed the open-ended JSON property schema but was not
-rendered. This nesting is documented in Microsoft's
+The native PDF export and final portfolio screenshots are still to be supplied.
+No generated mockup is presented as an exported Power BI report. The PBIP/PBIR
+source is the repository deliverable; a compiled PBIX is not included.
+
+## Implementation decisions
+
+The semantic model explicitly sets `defaultPowerBIDataSourceVersion` to
+`powerBI_V3` and uses semantic-model definition version 4.0. The earlier package
+omitted that enhanced-metadata setting and failed during Desktop conversion.
+The final package opened and refreshed successfully.
+
+The registered page background uses Power BI's nested `image.image` structure,
+with expression-wrapped name and scaling. A flat image object passed the
+open-ended JSON schema but did not render. See Microsoft's
 [page-formatting reference](https://github.com/microsoft/skills-for-fabric/blob/main/plugins/powerbi-authoring/skills/powerbi-report-cli/references/authoring/page-formatting.md).
-V3 also refreshes the theme resource identifier, corrects the bundled static font's
-family/style metadata, adds a Segoe UI/sans-serif fallback and increases card and
-axis text sizes. The title, photos, logo, rounded surfaces, labels and units are
-already in the registered background. The V3 Desktop screenshot confirmed those
-elements rendered, but exposed overlap between native callouts and unit labels,
-and KPI headings were too small. V4 moves native callout boxes up 25 canvas units,
-moves comparison boxes up 10, increases headings from 12px medium to 17px bold,
-and gives units their own lower band. The bold heading widths were measured to
-fit the 136px text area in every card. V4 spacing still needs Desktop confirmation;
-no user reconstruction of these elements is intended. Source observations and
-financial calculations are unchanged by the V4 layout fix.
 
-The V4 Desktop screenshot confirmed clear separation of values and units and
-legible bold headings. V5 preserves that card geometry, saves an explicit 2025
-slicer selection and enlarges the source/comparability footer to 12px. The saved
-selection also passed Microsoft's semantic-filter schema check. V5 initial
-selection and footer rendering still require Desktop review.
-
-The V5 screenshot subsequently confirmed the visible 2025 selection and enlarged
-footer. V6 changes only the decorative background: emerald/teal gradients,
-diagonal facets and perimeter traces; a larger Ludwigshafen caption integrated
-with the photographs; and a report-year caption positioned nearer the native
-dropdown. Plot surfaces remain quiet gradients without decorative data marks.
-Native visual geometry, measures and the data snapshot are unchanged. V6 caption
-alignment and decorative rendering remain subject to Desktop review.
+The decorative layer includes emerald/teal gradients, diagonal facets, perimeter
+traces, the original BASF logo, genuine Ludwigshafen photographs, bold card
+headings and original units. Its caption placement and card spacing were revised
+against Desktop screenshots. Plot backgrounds use subdued gradients rather than
+decorative data marks. Values, comparisons, charts and the year selector remain
+native Power BI visuals.
 
 ## Opening the project on Windows
 
@@ -126,7 +111,7 @@ See [design notes and credits](powerbi_design.md) for all image/logo sources.
 The title uses Space Grotesk rendered in the background; native text requests
 Space Grotesk/Space Grotesk Medium with Segoe UI and sans-serif fallbacks.
 
-## Validation and pending acceptance
+## Validation record
 
 Completed outside Desktop:
 
@@ -139,12 +124,25 @@ Completed outside Desktop:
   filenames and theme registration checked.
 - Decorative background rendered and visually inspected separately.
 
-**Pending in Desktop for V6:** reopen/refresh, caption alignment and decorative background, full DAX acceptance tests, font rendering, chart
-colours, negative profitability values, legends, label clipping, slicer operation,
-blank display, keyboard readability and final PDF/screenshot export. Run
-`BASF/verify_in_desktop.dax` in DAX Query View; it must return PASS on every row.
-Then select 2024 and 2016 manually to check interaction and missing-value display.
-These DAX checks are provided but have not yet been executed.
+Completed in Desktop, based on screenshots reviewed on 21 October 2026:
+
+- The report opened and refreshed, with nine 2025 values matching the source CSV.
+- The approved geometric background, photo captions and separated card typography
+  rendered without the earlier overlaps.
+- Selecting 2024 changed Sales to 61,444 and the other visible values to their
+  2024 observations. All four history charts retained 2016–2025. The dropdown
+  obscured the ROCE card in that particular screenshot, so it is not counted as
+  a visually inspected 2024 value.
+- Selecting 2016 left ROCE blank, displayed `Not reported`, and displayed
+  `No prior-year value` for comparisons outside the available period.
+- The owner reported all 22 supplied DAX checks as PASS. Those checks cover row
+  count, missingness, all nine 2025 values, selected 2024 Sales, percentage-point
+  changes, loss/negative-base guards and retained chart history. The DAX result
+  table itself was not independently inspected.
+
+Remaining presentation work: native PDF export and clean portfolio screenshots.
+Keyboard-only accessibility, Power BI Service font rendering and a full automatic
+comparison of every visual cell across every year have not been tested.
 
 Expected 2025 card values in source units:
 

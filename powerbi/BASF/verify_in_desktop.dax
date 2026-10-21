@@ -1,5 +1,6 @@
 // Execute in Power BI Desktop DAX Query View after Refresh.
-// These checks have NOT been executed outside the Desktop DAX engine.
+// Owner reported all 22 checks PASS in Desktop on 2026-10-21.
+// Result reported in chat; no exported result table independently inspected.
 EVALUATE
 VAR Y2025 = TREATAS({2025}, 'Report Year'[year])
 VAR Y2024 = TREATAS({2024}, 'Report Year'[year])
