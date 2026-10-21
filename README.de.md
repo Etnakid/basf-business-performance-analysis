@@ -30,7 +30,7 @@ Die acht SQL-Fragen behandeln Umsatztrends; EBITDA, EBIT und Jahresüberschuss; 
 | PostgreSQL | Importprüfungen, bedingte Aggregation, CTEs, Fensterfunktionen und Self-Join |
 | Power BI | Eine Seite mit neun Kennzahlenkarten, vier Verlaufsdiagrammen, DAX-Vergleichen und einer nicht verknüpften Jahresauswahl |
 
-Ich habe KI-Unterstützung für Quellenprüfung, Datensatz, Skripte, Berichtsdefinitionen und Dokumentation eingesetzt. Die Power-Query-Transformation und SQL-Abfragen habe ich lokal ausgeführt und den Bericht in Power BI Desktop geprüft. Das [Prüfprotokoll](docs/powerbi_implementation.md) unterscheidet automatisierte Prüfungen, visuelle Kontrollen und vom Eigentümer gemeldete DAX-Ergebnisse.
+Ich habe die Power-Query-Transformation und SQL-Abfragen lokal ausgeführt und den Bericht in Power BI Desktop geprüft. Das Projekt wurde mit KI-Unterstützung entwickelt. Ausführung und Validierung sind im [Prüfprotokoll](docs/powerbi_implementation.md) dokumentiert, das automatisierte Prüfungen, visuelle Kontrollen und vom Eigentümer gemeldete DAX-Ergebnisse unterscheidet.
 
 ## Daten und Definitionen
 
