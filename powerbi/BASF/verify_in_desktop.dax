@@ -1,0 +1,34 @@
+// Execute in Power BI Desktop DAX Query View after Refresh.
+// These checks have NOT been executed outside the Desktop DAX engine.
+EVALUATE
+VAR Y2025 = TREATAS({2025}, 'Report Year'[year])
+VAR Y2024 = TREATAS({2024}, 'Report Year'[year])
+VAR Y2016 = TREATAS({2016}, 'Report Year'[year])
+VAR Y2020 = TREATAS({2020}, 'Report Year'[year])
+VAR Y2021 = TREATAS({2021}, 'Report Year'[year])
+RETURN
+UNION(
+    ROW("Check", "90 rows", "Result", IF(COUNTROWS(basf_kpis) = 90, "PASS", "FAIL")),
+    ROW("Check", "One missing observation", "Result", IF(COUNTROWS(FILTER(basf_kpis, ISBLANK(basf_kpis[value]))) = 1, "PASS", "FAIL")),
+    ROW("Check", "Default year 2025", "Result", IF([Selected Year] = 2025, "PASS", "FAIL")),
+    ROW("Check", "2025 sales", "Result", IF(CALCULATE([Sales Selected], Y2025) = 59657, "PASS", "FAIL")),
+    ROW("Check", "2024 sales selection", "Result", IF(CALCULATE([Sales Selected], Y2024) = 61444, "PASS", "FAIL")),
+    ROW("Check", "2025 EBITDA", "Result", IF(CALCULATE([EBITDA Selected], Y2025) = 5618, "PASS", "FAIL")),
+    ROW("Check", "2025 EBIT", "Result", IF(CALCULATE([EBIT Selected], Y2025) = 1634, "PASS", "FAIL")),
+    ROW("Check", "2025 net income", "Result", IF(CALCULATE([Net Income Selected], Y2025) = 1619, "PASS", "FAIL")),
+    ROW("Check", "2025 margin source scale", "Result", IF(CALCULATE([EBITDA Margin Selected], Y2025) = 11, "PASS", "FAIL")),
+    ROW("Check", "2025 OCF", "Result", IF(CALCULATE([Operating Cash Flow Selected], Y2025) = 5610, "PASS", "FAIL")),
+    ROW("Check", "2025 FCF", "Result", IF(CALCULATE([Free Cash Flow Selected], Y2025) = 1342, "PASS", "FAIL")),
+    ROW("Check", "2025 additions", "Result", IF(CALCULATE([Investments Selected], Y2025) = 4787, "PASS", "FAIL")),
+    ROW("Check", "2025 ROCE", "Result", IF(ABS(CALCULATE([ROCE Selected], Y2025) - 5.8) < 0.000001, "PASS", "FAIL")),
+    ROW("Check", "2025 sales change", "Result", IF(ABS(CALCULATE([Sales Change], Y2025) - DIVIDE(59657-61444, 61444)) < 0.000001, "PASS", "FAIL")),
+    ROW("Check", "Margin change uses pp", "Result", IF(ABS(CALCULATE([EBITDA Margin Change], Y2025) + 0.8) < 0.000001, "PASS", "FAIL")),
+    ROW("Check", "ROCE change uses pp", "Result", IF(ABS(CALCULATE([ROCE Change], Y2025) - 0.7) < 0.000001, "PASS", "FAIL")),
+    ROW("Check", "Missing 2016 ROCE stays blank", "Result", IF(ISBLANK(CALCULATE([ROCE Selected], Y2016)), "PASS", "FAIL")),
+    ROW("Check", "2016 prior year stays blank", "Result", IF(ISBLANK(CALCULATE([Sales Previous], Y2016)), "PASS", "FAIL")),
+    ROW("Check", "Loss transition suppressed", "Result", IF(ISBLANK(CALCULATE([Net Income Change], Y2020)), "PASS", "FAIL")),
+    ROW("Check", "Negative base suppressed", "Result", IF(ISBLANK(CALCULATE([Net Income Change], Y2021)), "PASS", "FAIL")),
+    ROW("Check", "History unaffected by selection", "Result", IF(CALCULATE([Sales], Y2024, basf_kpis[year] = 2025) = 59657, "PASS", "FAIL")),
+    ROW("Check", "History does not sum years", "Result", IF(ISBLANK([Sales]), "PASS", "FAIL"))
+)
+ORDER BY [Check]

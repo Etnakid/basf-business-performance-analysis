@@ -1,0 +1,199 @@
+// Generated from tools/build_powerbi_project.py. Run verification in Desktop.
+
+// Sales
+CALCULATE(SELECTEDVALUE(basf_kpis[value]), basf_kpis[kpi] = "Sales")
+
+// Sales Selected
+VAR Y = [Selected Year]
+RETURN CALCULATE([Sales], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// Sales Previous
+VAR Y = [Selected Year] - 1
+RETURN CALCULATE([Sales], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// Sales Change
+VAR C = [Sales Selected]
+VAR P = [Sales Previous]
+RETURN IF(ISBLANK(C) || ISBLANK(P), BLANK(), IF(P > 0 && C >= 0, DIVIDE(C - P, P), BLANK()))
+
+// Sales Change Label
+VAR D = [Sales Change]
+VAR C = [Sales Selected]
+VAR P = [Sales Previous]
+RETURN SWITCH(TRUE(), ISBLANK(C), "Not reported", ISBLANK(P), "No prior-year value", ISBLANK(D), "Loss/zero-base: see history", FORMAT(D, "+0.0%;-0.0%;0.0%") & " vs PY")
+
+// EBITDA
+CALCULATE(SELECTEDVALUE(basf_kpis[value]), basf_kpis[kpi] = "EBITDA")
+
+// EBITDA Selected
+VAR Y = [Selected Year]
+RETURN CALCULATE([EBITDA], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// EBITDA Previous
+VAR Y = [Selected Year] - 1
+RETURN CALCULATE([EBITDA], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// EBITDA Change
+VAR C = [EBITDA Selected]
+VAR P = [EBITDA Previous]
+RETURN IF(ISBLANK(C) || ISBLANK(P), BLANK(), IF(P > 0 && C >= 0, DIVIDE(C - P, P), BLANK()))
+
+// EBITDA Change Label
+VAR D = [EBITDA Change]
+VAR C = [EBITDA Selected]
+VAR P = [EBITDA Previous]
+RETURN SWITCH(TRUE(), ISBLANK(C), "Not reported", ISBLANK(P), "No prior-year value", ISBLANK(D), "Loss/zero-base: see history", FORMAT(D, "+0.0%;-0.0%;0.0%") & " vs PY")
+
+// EBIT
+CALCULATE(SELECTEDVALUE(basf_kpis[value]), basf_kpis[kpi] = "EBIT")
+
+// EBIT Selected
+VAR Y = [Selected Year]
+RETURN CALCULATE([EBIT], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// EBIT Previous
+VAR Y = [Selected Year] - 1
+RETURN CALCULATE([EBIT], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// EBIT Change
+VAR C = [EBIT Selected]
+VAR P = [EBIT Previous]
+RETURN IF(ISBLANK(C) || ISBLANK(P), BLANK(), IF(P > 0 && C >= 0, DIVIDE(C - P, P), BLANK()))
+
+// EBIT Change Label
+VAR D = [EBIT Change]
+VAR C = [EBIT Selected]
+VAR P = [EBIT Previous]
+RETURN SWITCH(TRUE(), ISBLANK(C), "Not reported", ISBLANK(P), "No prior-year value", ISBLANK(D), "Loss/zero-base: see history", FORMAT(D, "+0.0%;-0.0%;0.0%") & " vs PY")
+
+// Net Income
+CALCULATE(SELECTEDVALUE(basf_kpis[value]), basf_kpis[kpi] = "Net Income")
+
+// Net Income Selected
+VAR Y = [Selected Year]
+RETURN CALCULATE([Net Income], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// Net Income Previous
+VAR Y = [Selected Year] - 1
+RETURN CALCULATE([Net Income], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// Net Income Change
+VAR C = [Net Income Selected]
+VAR P = [Net Income Previous]
+RETURN IF(ISBLANK(C) || ISBLANK(P), BLANK(), IF(P > 0 && C >= 0, DIVIDE(C - P, P), BLANK()))
+
+// Net Income Change Label
+VAR D = [Net Income Change]
+VAR C = [Net Income Selected]
+VAR P = [Net Income Previous]
+RETURN SWITCH(TRUE(), ISBLANK(C), "Not reported", ISBLANK(P), "No prior-year value", ISBLANK(D), "Loss/zero-base: see history", FORMAT(D, "+0.0%;-0.0%;0.0%") & " vs PY")
+
+// EBITDA Margin
+CALCULATE(SELECTEDVALUE(basf_kpis[value]), basf_kpis[kpi] = "EBITDA Margin before special items")
+
+// EBITDA Margin Selected
+VAR Y = [Selected Year]
+RETURN CALCULATE([EBITDA Margin], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// EBITDA Margin Previous
+VAR Y = [Selected Year] - 1
+RETURN CALCULATE([EBITDA Margin], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// EBITDA Margin Change
+VAR C = [EBITDA Margin Selected]
+VAR P = [EBITDA Margin Previous]
+RETURN IF(ISBLANK(C) || ISBLANK(P), BLANK(), C - P)
+
+// EBITDA Margin Change Label
+VAR D = [EBITDA Margin Change]
+VAR C = [EBITDA Margin Selected]
+VAR P = [EBITDA Margin Previous]
+RETURN SWITCH(TRUE(), ISBLANK(C), "Not reported", ISBLANK(P), "No prior-year value", ISBLANK(D), "Loss/zero-base: see history", FORMAT(D, "+0.0;-0.0;0.0") & " pp vs PY")
+
+// Operating Cash Flow
+CALCULATE(SELECTEDVALUE(basf_kpis[value]), basf_kpis[kpi] = "Operating Cash Flow")
+
+// Operating Cash Flow Selected
+VAR Y = [Selected Year]
+RETURN CALCULATE([Operating Cash Flow], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// Operating Cash Flow Previous
+VAR Y = [Selected Year] - 1
+RETURN CALCULATE([Operating Cash Flow], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// Operating Cash Flow Change
+VAR C = [Operating Cash Flow Selected]
+VAR P = [Operating Cash Flow Previous]
+RETURN IF(ISBLANK(C) || ISBLANK(P), BLANK(), IF(P > 0 && C >= 0, DIVIDE(C - P, P), BLANK()))
+
+// Operating Cash Flow Change Label
+VAR D = [Operating Cash Flow Change]
+VAR C = [Operating Cash Flow Selected]
+VAR P = [Operating Cash Flow Previous]
+RETURN SWITCH(TRUE(), ISBLANK(C), "Not reported", ISBLANK(P), "No prior-year value", ISBLANK(D), "Loss/zero-base: see history", FORMAT(D, "+0.0%;-0.0%;0.0%") & " vs PY")
+
+// Free Cash Flow
+CALCULATE(SELECTEDVALUE(basf_kpis[value]), basf_kpis[kpi] = "Free Cash Flow")
+
+// Free Cash Flow Selected
+VAR Y = [Selected Year]
+RETURN CALCULATE([Free Cash Flow], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// Free Cash Flow Previous
+VAR Y = [Selected Year] - 1
+RETURN CALCULATE([Free Cash Flow], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// Free Cash Flow Change
+VAR C = [Free Cash Flow Selected]
+VAR P = [Free Cash Flow Previous]
+RETURN IF(ISBLANK(C) || ISBLANK(P), BLANK(), IF(P > 0 && C >= 0, DIVIDE(C - P, P), BLANK()))
+
+// Free Cash Flow Change Label
+VAR D = [Free Cash Flow Change]
+VAR C = [Free Cash Flow Selected]
+VAR P = [Free Cash Flow Previous]
+RETURN SWITCH(TRUE(), ISBLANK(C), "Not reported", ISBLANK(P), "No prior-year value", ISBLANK(D), "Loss/zero-base: see history", FORMAT(D, "+0.0%;-0.0%;0.0%") & " vs PY")
+
+// Investments
+CALCULATE(SELECTEDVALUE(basf_kpis[value]), basf_kpis[kpi] = "Investments / CapEx (additions to PPE and intangible assets)")
+
+// Investments Selected
+VAR Y = [Selected Year]
+RETURN CALCULATE([Investments], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// Investments Previous
+VAR Y = [Selected Year] - 1
+RETURN CALCULATE([Investments], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// Investments Change
+VAR C = [Investments Selected]
+VAR P = [Investments Previous]
+RETURN IF(ISBLANK(C) || ISBLANK(P), BLANK(), IF(P > 0 && C >= 0, DIVIDE(C - P, P), BLANK()))
+
+// Investments Change Label
+VAR D = [Investments Change]
+VAR C = [Investments Selected]
+VAR P = [Investments Previous]
+RETURN SWITCH(TRUE(), ISBLANK(C), "Not reported", ISBLANK(P), "No prior-year value", ISBLANK(D), "Loss/zero-base: see history", FORMAT(D, "+0.0%;-0.0%;0.0%") & " vs PY")
+
+// ROCE
+CALCULATE(SELECTEDVALUE(basf_kpis[value]), basf_kpis[kpi] = "ROCE")
+
+// ROCE Selected
+VAR Y = [Selected Year]
+RETURN CALCULATE([ROCE], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// ROCE Previous
+VAR Y = [Selected Year] - 1
+RETURN CALCULATE([ROCE], REMOVEFILTERS(basf_kpis[year]), basf_kpis[year] = Y)
+
+// ROCE Change
+VAR C = [ROCE Selected]
+VAR P = [ROCE Previous]
+RETURN IF(ISBLANK(C) || ISBLANK(P), BLANK(), C - P)
+
+// ROCE Change Label
+VAR D = [ROCE Change]
+VAR C = [ROCE Selected]
+VAR P = [ROCE Previous]
+RETURN SWITCH(TRUE(), ISBLANK(C), "Not reported", ISBLANK(P), "No prior-year value", ISBLANK(D), "Loss/zero-base: see history", FORMAT(D, "+0.0;-0.0;0.0") & " pp vs PY")

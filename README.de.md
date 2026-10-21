@@ -129,6 +129,8 @@ data/
 power_query/     Reproduzierbares Power-Query-M-Skript
 sql/             Tabellendefinition, Datenprüfungen und Analyseabfragen
 docs/            Quellen, Methodik, Ergebnisse und Einschränkungen
+powerbi/         Freigegebener Entwurf und native PBIP-Umsetzung
+tools/           Projekterstellung und Strukturprüfungen
 ```
 
 Die Originaldateien liegen lokal unter `data/raw/`. Dieser Ordner ist von Git ausgeschlossen.
@@ -156,8 +158,24 @@ Designentwurf und noch kein fertiger Power-BI-Bericht**.
 Die [Vorschau](powerbi/design/preview.html) herunterladen und im Browser öffnen;
 GitHub zeigt ihren Quelltext an, führt sie aber nicht aus. Die
 [Designhinweise und Bildnachweise](docs/powerbi_design.md) dokumentieren den
-Entwurf. Die Umsetzung in Power BI steht noch aus.
+Entwurf.
+
+## Natives Power-BI-Projekt — Desktop-Prüfung steht aus
+
+Ich habe [das PBIP-Projekt](powerbi/BASF/BASF.pbip) mit neun Kennzahlenkarten,
+vier historischen Diagrammen und einer Jahresauswahl vorbereitet. Es enthält
+einen portablen Stand der aufbereiteten CSV-Datei und benötigt dafür keine
+Datenbank-Zugangsdaten oder lokalen Quelldateipfade. Das separate Power-Query-M-Skript
+bleibt der dokumentierte Weg zur Bereinigung der Originaldateien.
+
+Die Projektdefinitionen haben Strukturprüfungen und die Validierung anhand der
+Microsoft-JSON-Schemata bestanden. **Aktualisierung, DAX-Ausführung und Darstellung
+in Power BI Desktop sind noch nicht geprüft.** Der Bericht ist daher noch kein
+fertig validiertes Dashboard. Die [Anleitung und Prüfschritte](docs/powerbi_implementation.md)
+dokumentieren den aktuellen Stand.
 
 ## Nächster Schritt
 
-Ich werde einen Power-BI-Bericht zu denselben acht Fragen erstellen. Er soll das jüngste Geschäftsjahr sowie die Entwicklung von Umsatz und Profitabilität, Cashflow und Investitionen darstellen.
+Ich werde den nativen Bericht in Power BI Desktop öffnen und prüfen, die
+Interaktionen und Finanzwerte kontrollieren und anschließend die endgültigen
+Screenshots für mein Portfolio erstellen.

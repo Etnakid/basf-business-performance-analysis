@@ -129,6 +129,8 @@ data/
 power_query/     Reproducible Power Query M script
 sql/             Table definition, data checks and analysis queries
 docs/            Sources, methodology, findings and limitations
+powerbi/         Approved design and native PBIP implementation
+tools/           Project assembly and structural validation
 ```
 
 The original Excel workbooks are kept locally in `data/raw/`, which is excluded from Git.
@@ -152,8 +154,22 @@ selector. It is an **interactive design prototype, not a completed Power BI repo
 
 Download [the preview](powerbi/design/preview.html) and open it in a browser;
 GitHub displays its source rather than running it. See the [design notes and asset
-credits](docs/powerbi_design.md). The native Power BI implementation is still pending.
+credits](docs/powerbi_design.md).
+
+## Native Power BI project — awaiting Desktop verification
+
+I have prepared [the PBIP project](powerbi/BASF/BASF.pbip), with nine KPI cards,
+four history charts and a reporting-year selector. It includes a portable
+snapshot of the processed CSV, so opening it does not require database credentials
+or machine-specific source paths. The original workbook-cleaning workflow remains
+the separate Power Query M script.
+
+The project definitions passed structural and Microsoft JSON schema checks.
+**Desktop refresh, DAX execution and native visual rendering are still unverified**;
+this is not yet a completed or validated dashboard. See the
+[opening instructions, measures and acceptance checks](docs/powerbi_implementation.md).
 
 ## Next step
 
-I will build a Power BI report around the same eight questions, with views covering the latest year, sales and profitability, and cash flow and investments.
+I will open and validate the native report in Power BI Desktop, check its
+interactions and financial results, then capture the final portfolio screenshots.

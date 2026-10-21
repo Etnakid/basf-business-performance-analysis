@@ -9,6 +9,12 @@ implemented as part of this design milestone. The earlier local
 `BASF_Data_Preparation.pbix` contains the Power Query preparation only and is not
 included in this repository.
 
+A native PBIP implementation has since been prepared in `powerbi/BASF/`.
+Its definitions have passed structural/schema checks, but Desktop execution and
+native rendering are still pending. See [implementation status and opening
+instructions](powerbi_implementation.md). The browser preview remains a separate
+design reference.
+
 ## Approved direction
 
 - A single landscape page, targeting a 16:9 desktop canvas.
@@ -65,7 +71,7 @@ changing its proportions or removing its claim.
 
 ## Next implementation step
 
-Build the native Power BI report from the approved layout, add and validate the
-required DAX measures, reproduce the intended year-selection behaviour and
-review the exported report before treating the dashboard as complete. Confirm
-font support and legibility in Power BI during implementation.
+Open and refresh the prepared native Power BI project, run its DAX acceptance
+checks and review year selection, fonts and legibility before exporting or
+treating the dashboard as complete. Implementation adaptations are recorded in
+`powerbi_implementation.md`.

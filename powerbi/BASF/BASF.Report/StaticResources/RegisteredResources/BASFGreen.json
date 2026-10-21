@@ -1,0 +1,28 @@
+{
+  "name": "BASFGreen",
+  "dataColors": [
+    "#A0E95C",
+    "#5DD8BB",
+    "#EDAE99",
+    "#8AB7DF"
+  ],
+  "background": "#06120C",
+  "foreground": "#EAF5E2",
+  "tableAccent": "#A0E95C",
+  "textClasses": {
+    "title": {
+      "fontFace": "Space Grotesk",
+      "fontSize": 14,
+      "color": "#EAF5E2"
+    },
+    "label": {
+      "fontFace": "Space Grotesk",
+      "fontSize": 10,
+      "color": "#B8CCB7"
+    },
+    "callout": {
+      "fontFace": "Space Grotesk",
+      "color": "#F3FAEC"
+    }
+  }
+}

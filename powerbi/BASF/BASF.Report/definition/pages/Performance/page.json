@@ -1,0 +1,489 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "Performance",
+  "displayName": "Business performance",
+  "displayOption": "FitToPage",
+  "width": 1600,
+  "height": 900,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#06120C'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "name": "BASFBackground",
+            "url": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "BASFBackground"
+                }
+              }
+            },
+            "scaling": "Fit"
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "SalesHistory",
+      "target": "KPI00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "Delta00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "KPI01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "Delta01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "KPI02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "Delta02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "KPI03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "Delta03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "KPI04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "Delta04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "KPI05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "Delta05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "KPI06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "Delta06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "KPI07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "Delta07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "KPI08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "Delta08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "YearSelector",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "ProfitabilityHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "CashFlowHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "SalesHistory",
+      "target": "InvestmentHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "KPI00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "Delta00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "KPI01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "Delta01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "KPI02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "Delta02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "KPI03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "Delta03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "KPI04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "Delta04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "KPI05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "Delta05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "KPI06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "Delta06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "KPI07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "Delta07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "KPI08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "Delta08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "YearSelector",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "SalesHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "CashFlowHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ProfitabilityHistory",
+      "target": "InvestmentHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "KPI00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "Delta00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "KPI01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "Delta01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "KPI02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "Delta02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "KPI03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "Delta03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "KPI04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "Delta04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "KPI05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "Delta05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "KPI06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "Delta06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "KPI07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "Delta07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "KPI08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "Delta08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "YearSelector",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "SalesHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "ProfitabilityHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "CashFlowHistory",
+      "target": "InvestmentHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "KPI00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "Delta00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "KPI01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "Delta01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "KPI02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "Delta02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "KPI03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "Delta03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "KPI04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "Delta04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "KPI05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "Delta05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "KPI06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "Delta06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "KPI07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "Delta07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "KPI08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "Delta08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "YearSelector",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "SalesHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "ProfitabilityHistory",
+      "type": "NoFilter"
+    },
+    {
+      "source": "InvestmentHistory",
+      "target": "CashFlowHistory",
+      "type": "NoFilter"
+    }
+  ]
+}
