@@ -43,6 +43,14 @@ slicer selection and enlarges the source/comparability footer to 12px. The saved
 selection also passed Microsoft's semantic-filter schema check. V5 initial
 selection and footer rendering still require Desktop review.
 
+The V5 screenshot subsequently confirmed the visible 2025 selection and enlarged
+footer. V6 changes only the decorative background: emerald/teal gradients,
+diagonal facets and perimeter traces; a larger Ludwigshafen caption integrated
+with the photographs; and a report-year caption positioned nearer the native
+dropdown. Plot surfaces remain quiet gradients without decorative data marks.
+Native visual geometry, measures and the data snapshot are unchanged. V6 caption
+alignment and decorative rendering remain subject to Desktop review.
+
 ## Opening the project on Windows
 
 1. Extract the complete package with **Extract all**. Do not open files inside
@@ -131,7 +139,7 @@ Completed outside Desktop:
   filenames and theme registration checked.
 - Decorative background rendered and visually inspected separately.
 
-**Pending in Desktop for V5:** reopen/refresh, visible 2025 selection and footer legibility, full DAX acceptance tests, font rendering, chart
+**Pending in Desktop for V6:** reopen/refresh, caption alignment and decorative background, full DAX acceptance tests, font rendering, chart
 colours, negative profitability values, legends, label clipping, slicer operation,
 blank display, keyboard readability and final PDF/screenshot export. Run
 `BASF/verify_in_desktop.dax` in DAX Query View; it must return PASS on every row.

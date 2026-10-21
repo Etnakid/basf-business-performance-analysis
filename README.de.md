@@ -175,7 +175,9 @@ Hintergrundbild-Struktur und die Schrift-Ausweichlösung korrigiert.
 Die V3-Prüfung bestätigte den Hintergrund. V4 vergrößert die Kennzahlentitel und
 trennt Werte und Einheiten deutlicher. Die V4-Aufnahme bestätigte diese Abstände;
 V5 speichert 2025 als sichtbare Vorauswahl und vergrößert die Fußnoten.
-**V5-Darstellung, Jahresauswahl und vollständige DAX-Prüfungen stehen noch aus.** Der Bericht ist daher noch kein
+Die V5-Aufnahme bestätigte diese Anpassungen. V6 ergänzt einen geometrischen
+Hintergrund in Smaragdgrün/Teal und verbessert die Platzierung von Orts- und Jahresbeschriftung.
+**V6-Darstellung, Jahresauswahl und vollständige DAX-Prüfungen stehen noch aus.** Der Bericht ist daher noch kein
 fertig validiertes Dashboard. Die [Anleitung und Prüfschritte](docs/powerbi_implementation.md)
 dokumentieren den aktuellen Stand.
 

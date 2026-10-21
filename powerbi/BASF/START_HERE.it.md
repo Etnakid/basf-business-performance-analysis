@@ -1,12 +1,13 @@
 # Aprire il progetto BASF
 
-Questa è la versione V5 del progetto nativo Power BI, con il 2025 preselezionato
-e note finali più leggibili. La V4 ha confermato titoli delle schede più grandi e
-in grassetto e separazione di numeri e unità. La selezione iniziale e le note V5
-vanno ancora verificate in Desktop. Il precedente file di preparazione
+Questa è la versione V6 del progetto nativo Power BI, con sfondo geometrico
+smeraldo/teal, Ludwigshafen integrata sopra le foto e «Report year» più vicino
+al selettore. La V5 ha confermato il 2025 preselezionato e note finali più leggibili.
+L'allineamento delle nuove scritte e lo sfondo V6 vanno ancora verificati in Desktop.
+Il precedente file di preparazione
 non viene modificato.
 
-Pacchetto corretto V5: estrailo in una cartella nuova. Non sovrascrivere la prima
+Pacchetto V6: estrailo in una cartella nuova. Non sovrascrivere la prima
 prova già aperta o aggiornata da Power BI. Chiudi quella finestra prima di aprire
 questo progetto. Se compare ancora l'avviso rosso sui metadati avanzati, non premere
 «Aggiorna report»: mostra l'avviso per proseguire con la diagnosi.

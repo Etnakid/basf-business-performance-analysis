@@ -14,7 +14,10 @@ Its definitions have passed structural/schema checks. The V2 Desktop review
 confirmed the 2025 values and native charts; V3 corrects the absent decorative
 background and font fallback. V3 rendering was confirmed; V4 addresses overlapping
 callouts/units and strengthens KPI headings. V4 spacing was confirmed; V5 sets an
-explicit initial 2025 selection and enlarges footer notes. Final V5 appearance and acceptance checks remain
+explicit initial 2025 selection and enlarges footer notes, confirmed in Desktop.
+V6 adds emerald/teal geometric facets and perimeter traces, integrates the
+Ludwigshafen caption with the photos and places the report-year caption nearer
+the dropdown. Final V6 appearance and acceptance checks remain
 pending. See [implementation status and opening
 instructions](powerbi_implementation.md). The browser preview remains a separate
 design reference.
@@ -23,6 +26,8 @@ design reference.
 
 - A single landscape page, targeting a 16:9 desktop canvas.
 - Dark green background with bright green accents and readable pale text.
+- Native V6 refinement: emerald/teal gradients, diagonal facets and perimeter
+  traces outside the data areas; subdued gradient plot surfaces.
 - Space Grotesk for the title, values and labels; the browser preview loads the
   font from Google Fonts and falls back to Segoe UI if unavailable.
 - The original white BASF logo and its “We create chemistry” claim at top left.
