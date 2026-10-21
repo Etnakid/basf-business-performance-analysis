@@ -28,17 +28,31 @@
             }
           },
           "image": {
-            "name": "background.png",
-            "url": {
-              "expr": {
-                "ResourcePackageItem": {
-                  "PackageName": "RegisteredResources",
-                  "PackageType": 1,
-                  "ItemName": "background.png"
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'background.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "background.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fit'"
+                  }
                 }
               }
-            },
-            "scaling": "Fit"
+            }
           }
         }
       }

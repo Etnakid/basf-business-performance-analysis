@@ -3,10 +3,11 @@
 ## Status
 
 The native project is prepared in `powerbi/BASF/BASF.pbip`. It contains a semantic
-model, DAX measures and a one-page PBIR report definition. It has **not yet been
-opened, refreshed or visually verified in Power BI Desktop**. JSON schema checks
-do not establish that Power BI can execute a measure or render a visual. No final
-PBIX, screenshot or PDF export is claimed at this stage.
+model, DAX measures and a one-page PBIR report definition. The V2 package has
+opened and refreshed in the user's Desktop: its screenshot shows all nine 2025
+card values matching the CSV and all four native history charts, without the
+earlier field errors. Full DAX acceptance tests and interaction checks remain
+pending. No final PBIX or finished portfolio export is claimed at this stage.
 
 First Desktop attempt: the project opened, but requested an enhanced-metadata
 upgrade; after that upgrade its tables disappeared and visuals reported
@@ -18,14 +19,28 @@ a fresh Desktop opening and refresh; its success is not yet established.
 Microsoft's [semantic model definition example](https://learn.microsoft.com/en-us/rest/api/fabric/articles/item-management/definitions/semantic-model-definition)
 shows the enhanced-metadata model property.
 
+V2 Desktop review then confirmed that data and chart bindings worked, but the
+page background was still absent. V3 corrects the background's required nested
+`image.image` structure, including expression-wrapped name and scaling. The
+previous flat structure passed the open-ended JSON property schema but was not
+rendered. This nesting is documented in Microsoft's
+[page-formatting reference](https://github.com/microsoft/skills-for-fabric/blob/main/plugins/powerbi-authoring/skills/powerbi-report-cli/references/authoring/page-formatting.md).
+V3 also refreshes the theme resource identifier, corrects the bundled static font's
+family/style metadata, adds a Segoe UI/sans-serif fallback and increases card and
+axis text sizes. The title, photos, logo, rounded surfaces, labels and units are
+already in the registered background. V3 visual rendering still needs confirmation
+in Desktop; no user reconstruction of these elements is intended.
+
 ## Opening the project on Windows
 
 1. Extract the complete package with **Extract all**. Do not open files inside
    the ZIP or move the PBIP away from its two companion folders.
-2. In `BASF/assets`, open `SpaceGrotesk-Medium.ttf` and click **Install**. Close
+2. Optionally, in `BASF/assets`, open `SpaceGrotesk-Medium.ttf` and click **Install**. Close
    and reopen Power BI Desktop if it was already running. This font is supplied
    under the accompanying SIL Open Font License. Desktop and service font
-   behaviour still need checking; a fallback may be necessary for sharing.
+   behaviour still need checking; native text has a Segoe UI/sans-serif fallback.
+   The title and decorative labels are rendered in Space Grotesk in the background
+   and do not require installing the font.
 3. Open `BASF/BASF.pbip` in a recent Power BI Desktop. The file
    `BASF/BASF.Report/definition.pbir` is an alternative entry point. If project
    support is disabled, enable the relevant Power BI Project option under
@@ -88,7 +103,7 @@ Power BI visuals. No custom visual or HTML visual is required.
 
 See [design notes and credits](powerbi_design.md) for all image/logo sources.
 The title uses Space Grotesk rendered in the background; native text requests
-the installed Space Grotesk font and still requires Desktop verification.
+Space Grotesk/Space Grotesk Medium with Segoe UI and sans-serif fallbacks.
 
 ## Validation and pending acceptance
 
@@ -96,12 +111,14 @@ Completed outside Desktop:
 
 - 30 PBIP/PBIR JSON definitions validated against their declared Microsoft JSON
   schemas, including semantic query references.
+- The V3 theme independently validated against Microsoft's theme schema 2.159.
 - Embedded CSV bytes checked against the repository CSV, including all 90 pairs,
   original units and the null observation.
-- Native measure/column references and canvas bounds checked.
+- Native measure/column references, canvas bounds, image nesting, resource
+  filenames and theme registration checked.
 - Decorative background rendered and visually inspected separately.
 
-**Pending in Desktop:** import/refresh, DAX execution, font rendering, chart
+**Pending in Desktop for V3:** reopen/refresh, full DAX acceptance tests, font rendering, chart
 colours, negative profitability values, legends, label clipping, slicer operation,
 blank display, keyboard readability and final PDF/screenshot export. Run
 `BASF/verify_in_desktop.dax` in DAX Query View; it must return PASS on every row.

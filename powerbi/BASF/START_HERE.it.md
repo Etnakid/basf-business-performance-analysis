@@ -1,19 +1,27 @@
 # Aprire il progetto BASF
 
-Questa è la prima implementazione nativa Power BI, da verificare in Desktop.
-Non è ancora un report collaudato. Non modifica il precedente file di preparazione.
+Questa è la versione V3 del progetto nativo Power BI, con sfondo e font corretti.
+I nove valori 2025 e i quattro grafici erano visibili nella V2 dopo il refresh;
+la resa grafica della V3 va ancora verificata. Il precedente file di preparazione
+non viene modificato.
 
-Pacchetto corretto V2: estrailo in una cartella nuova. Non sovrascrivere la prima
+Pacchetto corretto V3: estrailo in una cartella nuova. Non sovrascrivere la prima
 prova già aperta o aggiornata da Power BI. Chiudi quella finestra prima di aprire
 questo progetto. Se compare ancora l'avviso rosso sui metadati avanzati, non premere
 «Aggiorna report»: mostra l'avviso per proseguire con la diagnosi.
 
 1. Estrai tutto lo ZIP: tasto destro sullo ZIP > **Estrai tutto** > **Estrai**.
-2. Nella cartella `BASF`, apri `assets`, fai doppio clic su
-   `SpaceGrotesk-Medium.ttf` e premi **Installa**. Chiudi e riapri Power BI se era aperto.
-3. Torna nella cartella `BASF` e fai doppio clic su **BASF.pbip**.
+2. Nella cartella `BASF`, fai doppio clic su **BASF.pbip**.
    Tieni accanto le cartelle `BASF.Report` e `BASF.SemanticModel`.
-4. In Power BI Desktop premi **Home > Aggiorna** per caricare i dati incorporati.
+3. In Power BI Desktop premi **Home > Aggiorna** per caricare i dati incorporati.
+
+Il titolo, il logo, le foto sfumate, le nove superfici arrotondate, le etichette e
+le unità sono già nello sfondo incluso: non devi ricrearli manualmente.
+I numeri e i grafici sono visual nativi e interattivi, non immagini.
+
+Il font del titolo è già incorporato nello sfondo. Per richiedere lo stesso font
+anche sui valori, puoi installare `assets/SpaceGrotesk-Medium.ttf` e riaprire Power BI.
+Senza installarlo, il progetto prevede Segoe UI come riserva per il testo nativo.
 
 Se il doppio clic non apre il progetto, apri Power BI Desktop e usa
 **File > Apri > Sfoglia** per selezionare `BASF.pbip`.

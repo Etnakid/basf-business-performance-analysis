@@ -45,8 +45,14 @@ def run(schemas=False):
         assert item['name'] == item['path'], 'Use the actual resource filename as its identifier'
         assert (PROJECT/'BASF.Report/StaticResources/RegisteredResources'/item['path']).is_file()
     assert report['themeCollection']['customTheme']['name'] in {i['name'] for i in resources}
-    image = page['objects']['background'][0]['properties']['image']['url']['expr']['ResourcePackageItem']
+    background = page['objects']['background'][0]['properties']['image']
+    assert set(background) == {'image'}, 'Power BI requires a nested image.image object'
+    image = background['image']['url']['expr']['ResourcePackageItem']
+    assert background['image']['scaling']['expr']['Literal']['Value'] == "'Fit'"
     assert image['ItemName'] in {i['name'] for i in resources}
+    theme_name = report['themeCollection']['customTheme']['name']
+    theme = json.loads((PROJECT/'BASF.Report/StaticResources/RegisteredResources'/theme_name).read_text())
+    assert theme['name'] == theme_name
     definitions=[]
     for path in PROJECT.rglob('*'):
         if path.suffix not in {'.json','.pbip','.pbir','.pbism'}: continue

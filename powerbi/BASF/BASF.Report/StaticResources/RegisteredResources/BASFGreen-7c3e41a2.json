@@ -1,5 +1,5 @@
 {
-  "name": "BASFGreen",
+  "name": "BASFGreen-7c3e41a2.json",
   "dataColors": [
     "#A0E95C",
     "#5DD8BB",
@@ -11,18 +11,19 @@
   "tableAccent": "#A0E95C",
   "textClasses": {
     "title": {
-      "fontFace": "Space Grotesk",
+      "fontFace": "'Space Grotesk', 'Space Grotesk Medium', 'Segoe UI', sans-serif",
       "fontSize": 14,
       "color": "#EAF5E2"
     },
     "label": {
-      "fontFace": "Space Grotesk",
+      "fontFace": "'Space Grotesk', 'Space Grotesk Medium', 'Segoe UI', sans-serif",
       "fontSize": 10,
       "color": "#B8CCB7"
     },
     "callout": {
-      "fontFace": "Space Grotesk",
-      "color": "#F3FAEC"
+      "fontFace": "'Space Grotesk', 'Space Grotesk Medium', 'Segoe UI', sans-serif",
+      "color": "#F3FAEC",
+      "fontSize": 26
     }
   }
 }

@@ -15,6 +15,8 @@ REPORT = OUT / 'BASF.Report'
 MODEL = OUT / 'BASF.SemanticModel'
 PAGE = REPORT / 'definition/pages/Performance'
 SCHEMA = 'https://developer.microsoft.com/json-schemas/fabric/'
+FONT = "'Space Grotesk', 'Space Grotesk Medium', 'Segoe UI', sans-serif"
+THEME_NAME = 'BASFGreen-7c3e41a2.json'
 KPIS = [
     ('Sales', 'Sales', False),
     ('EBITDA', 'EBITDA', False),
@@ -68,7 +70,8 @@ def visual(name, kind, x, y, w, h, roles, objects=None, title=None, alt=None):
         'visualHeader': obj(show=lit(False)),
         'title': obj(show=lit(bool(title)), text=lit(title or ''),
                      fontColor=color('#EAF5E2'), fontSize=lit(13),
-                     fontFamily=lit('Space Grotesk')),
+                     fontFamily=lit(FONT)),
+        'padding': obj(top=lit(0), bottom=lit(0), left=lit(0), right=lit(0)),
         'general': obj(altText=lit(alt or title or name)),
     }
     config = {'visualType': kind, 'query': {'queryState': {
@@ -131,7 +134,7 @@ def build():
         # No misleading percentage growth across a loss/profit transition or zero base.
         label = (f'VAR D = [{name} Change]\nVAR C = [{name} Selected]\nVAR P = [{name} Previous]\n'
                  'RETURN SWITCH(TRUE(), ISBLANK(C), "Not reported", '
-                 'ISBLANK(P), "No prior-year value", ISBLANK(D), "Loss/zero-base: see history", '
+                 'ISBLANK(P), "No prior-year value", ISBLANK(D), "Not comparable", '
                  'FORMAT(D, ' + ('"+0.0;-0.0;0.0") & " pp vs PY")' if percentage else
                                  '"+0.0%;-0.0%;0.0%") & " vs PY")'))
         for suffix, expr, form, folder in [('', base, fmt, 'History'),
@@ -169,10 +172,10 @@ def build():
         '$schema': SCHEMA + 'item/report/definition/versionMetadata/1.0.0/schema.json', 'version': '2.0.0'})
     write(REPORT / 'definition/report.json', {
         '$schema': SCHEMA + 'item/report/definition/report/2.0.0/schema.json',
-        'themeCollection': {'customTheme': {'name': 'BASFGreen.json', 'reportVersionAtImport': '5.59',
+        'themeCollection': {'customTheme': {'name': THEME_NAME, 'reportVersionAtImport': '5.59',
                                           'type': 'RegisteredResources'}},
         'resourcePackages': [{'name': 'RegisteredResources', 'type': 'RegisteredResources', 'items': [
-            {'name': 'BASFGreen.json', 'path': 'BASFGreen.json', 'type': 'CustomTheme'},
+            {'name': THEME_NAME, 'path': THEME_NAME, 'type': 'CustomTheme'},
             {'name': 'background.png', 'path': 'background.png', 'type': 'Image'}]}]})
     write(REPORT / 'definition/pages/pages.json', {
         '$schema': SCHEMA + 'item/report/definition/pagesMetadata/1.0.0/schema.json',
@@ -186,13 +189,13 @@ def build():
             card_projection['format'] = '0.0'
         visual('KPI%02d' % i, 'card', x + 3, 254, 156, 51,
                {'Values': [card_projection]},
-               {'labels': obj(color=color('#F3FAEC'), fontSize=lit(23), fontFamily=lit('Space Grotesk'),
+               {'labels': obj(color=color('#F3FAEC'), fontSize=lit(26), fontFamily=lit(FONT),
                               labelDisplayUnits=lit(1), labelPrecision=lit(1 if percentage else 0)),
                 'categoryLabels': obj(show=lit(False))},
                alt=f'{name}: selected year. ' + ('Percent.' if percentage else 'Million EUR.'))
         visual('Delta%02d' % i, 'card', x + 3, 316, 156, 24,
                {'Values': [projection(name + ' Change Label')]},
-               {'labels': obj(color=color('#B8CCB7'), fontSize=lit(8), fontFamily=lit('Space Grotesk')),
+               {'labels': obj(color=color('#B8CCB7'), fontSize=lit(9), fontFamily=lit(FONT)),
                 'categoryLabels': obj(show=lit(False))}, alt=f'{name}: comparison with previous year')
 
     visual('YearSelector', 'slicer', 1370, 138, 192, 55,
@@ -201,7 +204,7 @@ def build():
             'selection': obj(singleSelect=lit(True), selectAllCheckboxEnabled=lit(False)),
             'header': obj(show=lit(False)),
             'items': obj(fontColor=color('#EAF5E2'), background=color('#102818'),
-                         textSize=lit(12), fontFamily=lit('Space Grotesk'))},
+                         textSize=lit(12), fontFamily=lit(FONT))},
            alt='Choose report year. With no selection the cards show 2025, the latest year.')
     for name, kind, x, y, w, h, ms in [
         ('SalesHistory', 'lineChart', 44, 409, 802, 187, ['Sales']),
@@ -211,11 +214,11 @@ def build():
         visual(name, kind, x, y, w, h,
                {'Category': [projection('year', column=True)], 'Y': [projection(m) for m in ms]},
                {'categoryAxis': obj(show=lit(True), axisType=lit('Categorical'),
-                                    showAxisTitle=lit(False), labelColor=color('#A4B9AA'), fontSize=lit(9)),
+                                    showAxisTitle=lit(False), labelColor=color('#A4B9AA'), fontSize=lit(10), fontFamily=lit(FONT)),
                 'valueAxis': obj(show=lit(True), showAxisTitle=lit(False),
-                                 labelColor=color('#A4B9AA'), fontSize=lit(9),
+                                 labelColor=color('#A4B9AA'), fontSize=lit(10), fontFamily=lit(FONT),
                                  labelDisplayUnits=lit(1), gridlineColor=color('#24402B')),
-                'legend': obj(show=lit(len(ms) > 1), position=lit('Top'), labelColor=color('#B8CCB7'), fontSize=lit(9)),
+                'legend': obj(show=lit(len(ms) > 1), position=lit('Top'), labelColor=color('#B8CCB7'), fontSize=lit(10), fontFamily=lit(FONT)),
                 'labels': obj(show=lit(False))},
                alt='2016–2025 annual ' + ', '.join(ms) + '; million EUR; as published, not like-for-like.')
 
@@ -223,10 +226,10 @@ def build():
         '$schema': SCHEMA + 'item/report/definition/page/2.0.0/schema.json',
         'name': 'Performance', 'displayName': 'Business performance',
         'displayOption': 'FitToPage', 'width': 1600, 'height': 900,
-        'objects': {'background': obj(color=color('#06120C'), transparency=lit(0), image={
-            'name': 'background.png', 'url': {'expr': {'ResourcePackageItem': {
+        'objects': {'background': obj(color=color('#06120C'), transparency=lit(0), image={'image': {
+            'name': lit('background.png'), 'url': {'expr': {'ResourcePackageItem': {
                 'PackageName': 'RegisteredResources', 'PackageType': 1, 'ItemName': 'background.png'}}},
-            'scaling': 'Fit'})},
+            'scaling': lit('Fit')}})},
         'visualInteractions': [
             {'source': a, 'target': b, 'type': 'NoFilter'} for a in VISUALS if a.endswith('History')
             for b in VISUALS if b != a]})

@@ -108,7 +108,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "10D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Space Grotesk'', ''Space Grotesk Medium'', ''Segoe UI'', sans-serif'"
                 }
               }
             }
@@ -146,7 +153,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "10D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Space Grotesk'', ''Space Grotesk Medium'', ''Segoe UI'', sans-serif'"
                 }
               }
             },
@@ -202,7 +216,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "10D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Space Grotesk'', ''Space Grotesk Medium'', ''Segoe UI'', sans-serif'"
                 }
               }
             }
@@ -301,7 +322,41 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Space Grotesk'"
+                  "Value": "'''Space Grotesk'', ''Space Grotesk Medium'', ''Segoe UI'', sans-serif'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

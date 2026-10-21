@@ -10,8 +10,10 @@ implemented as part of this design milestone. The earlier local
 included in this repository.
 
 A native PBIP implementation has since been prepared in `powerbi/BASF/`.
-Its definitions have passed structural/schema checks, but Desktop execution and
-native rendering are still pending. See [implementation status and opening
+Its definitions have passed structural/schema checks. The V2 Desktop review
+confirmed the 2025 values and native charts; V3 corrects the absent decorative
+background and font fallback. Final appearance and acceptance checks remain
+pending. See [implementation status and opening
 instructions](powerbi_implementation.md). The browser preview remains a separate
 design reference.
 

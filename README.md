@@ -165,7 +165,9 @@ or machine-specific source paths. The original workbook-cleaning workflow remain
 the separate Power Query M script.
 
 The project definitions passed structural and Microsoft JSON schema checks.
-**Desktop refresh, DAX execution and native visual rendering are still unverified**;
+The first Desktop review confirmed the nine 2025 values and four native charts.
+I then corrected the background-image structure and font fallback in V3.
+**V3 appearance, year interactions and the full DAX acceptance checks remain pending**;
 this is not yet a completed or validated dashboard. See the
 [opening instructions, measures and acceptance checks](docs/powerbi_implementation.md).
 

@@ -52,14 +52,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "23D"
+                  "Value": "26D"
                 }
               }
             },
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Space Grotesk'"
+                  "Value": "'''Space Grotesk'', ''Space Grotesk Medium'', ''Segoe UI'', sans-serif'"
                 }
               }
             },
@@ -172,7 +172,41 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Space Grotesk'"
+                  "Value": "'''Space Grotesk'', ''Space Grotesk Medium'', ''Segoe UI'', sans-serif'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
