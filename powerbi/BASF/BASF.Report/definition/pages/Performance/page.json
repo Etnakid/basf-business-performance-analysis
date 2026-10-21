@@ -28,13 +28,13 @@
             }
           },
           "image": {
-            "name": "BASFBackground",
+            "name": "background.png",
             "url": {
               "expr": {
                 "ResourcePackageItem": {
                   "PackageName": "RegisteredResources",
                   "PackageType": 1,
-                  "ItemName": "BASFBackground"
+                  "ItemName": "background.png"
                 }
               }
             },

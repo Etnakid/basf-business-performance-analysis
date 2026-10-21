@@ -104,7 +104,7 @@ def build():
         'version': '4.0', 'datasetReference': {'byPath': {'path': '../BASF.SemanticModel'}}})
     write(MODEL / 'definition.pbism', {
         '$schema': SCHEMA + 'item/semanticModel/definitionProperties/1.0.0/schema.json',
-        'version': '1.0', 'settings': {}})
+        'version': '4.0', 'settings': {}})
 
     m_query = [
         'let',
@@ -144,6 +144,7 @@ def build():
             dax_doc.extend(['', f'// {name + suffix}', expr])
     model = {'name': 'BASF', 'compatibilityLevel': 1601, 'model': {
         'culture': 'en-US', 'sourceQueryCulture': 'en-US',
+        'defaultPowerBIDataSourceVersion': 'powerBI_V3',
         'dataAccessOptions': {'legacyRedirects': True, 'returnErrorValuesAsNull': True},
         'annotations': [{'name': 'PBI_QueryOrder', 'value': '["basf_kpis","Report Year"]'},
                         {'name': 'ProcessedCsvSHA256', 'value': hashlib.sha256(raw).hexdigest()}],
@@ -168,11 +169,11 @@ def build():
         '$schema': SCHEMA + 'item/report/definition/versionMetadata/1.0.0/schema.json', 'version': '2.0.0'})
     write(REPORT / 'definition/report.json', {
         '$schema': SCHEMA + 'item/report/definition/report/2.0.0/schema.json',
-        'themeCollection': {'customTheme': {'name': 'BASFGreen', 'reportVersionAtImport': '5.59',
+        'themeCollection': {'customTheme': {'name': 'BASFGreen.json', 'reportVersionAtImport': '5.59',
                                           'type': 'RegisteredResources'}},
         'resourcePackages': [{'name': 'RegisteredResources', 'type': 'RegisteredResources', 'items': [
-            {'name': 'BASFGreen', 'path': 'BASFGreen.json', 'type': 'CustomTheme'},
-            {'name': 'BASFBackground', 'path': 'background.png', 'type': 'Image'}]}]})
+            {'name': 'BASFGreen.json', 'path': 'BASFGreen.json', 'type': 'CustomTheme'},
+            {'name': 'background.png', 'path': 'background.png', 'type': 'Image'}]}]})
     write(REPORT / 'definition/pages/pages.json', {
         '$schema': SCHEMA + 'item/report/definition/pagesMetadata/1.0.0/schema.json',
         'pageOrder': ['Performance'], 'activePageName': 'Performance'})
@@ -223,8 +224,8 @@ def build():
         'name': 'Performance', 'displayName': 'Business performance',
         'displayOption': 'FitToPage', 'width': 1600, 'height': 900,
         'objects': {'background': obj(color=color('#06120C'), transparency=lit(0), image={
-            'name': 'BASFBackground', 'url': {'expr': {'ResourcePackageItem': {
-                'PackageName': 'RegisteredResources', 'PackageType': 1, 'ItemName': 'BASFBackground'}}},
+            'name': 'background.png', 'url': {'expr': {'ResourcePackageItem': {
+                'PackageName': 'RegisteredResources', 'PackageType': 1, 'ItemName': 'background.png'}}},
             'scaling': 'Fit'})},
         'visualInteractions': [
             {'source': a, 'target': b, 'type': 'NoFilter'} for a in VISUALS if a.endswith('History')

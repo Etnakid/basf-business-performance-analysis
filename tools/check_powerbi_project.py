@@ -22,6 +22,7 @@ PROJECT = ROOT / 'powerbi/BASF'
 def run(schemas=False):
     model = json.loads((PROJECT/'BASF.SemanticModel/model.bim').read_text())['model']
     tables = {t['name']: t for t in model['tables']}
+    assert model.get('defaultPowerBIDataSourceVersion') == 'powerBI_V3', 'Enhanced model metadata must be explicit'
     fact = tables['basf_kpis']
     query = '\n'.join(fact['partitions'][0]['source']['expression'])
     encoded = re.search(r'Binary.FromText\("([^"]+)"', query).group(1)
@@ -38,6 +39,14 @@ def run(schemas=False):
     assert annotations['ProcessedCsvSHA256'] == hashlib.sha256(expected).hexdigest()
     pagepath = PROJECT/'BASF.Report/definition/pages/Performance'
     page = json.loads((pagepath/'page.json').read_text())
+    report = json.loads((PROJECT/'BASF.Report/definition/report.json').read_text())
+    resources = report['resourcePackages'][0]['items']
+    for item in resources:
+        assert item['name'] == item['path'], 'Use the actual resource filename as its identifier'
+        assert (PROJECT/'BASF.Report/StaticResources/RegisteredResources'/item['path']).is_file()
+    assert report['themeCollection']['customTheme']['name'] in {i['name'] for i in resources}
+    image = page['objects']['background'][0]['properties']['image']['url']['expr']['ResourcePackageItem']
+    assert image['ItemName'] in {i['name'] for i in resources}
     definitions=[]
     for path in PROJECT.rglob('*'):
         if path.suffix not in {'.json','.pbip','.pbir','.pbism'}: continue

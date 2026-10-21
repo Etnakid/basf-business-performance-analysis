@@ -8,6 +8,16 @@ opened, refreshed or visually verified in Power BI Desktop**. JSON schema checks
 do not establish that Power BI can execute a measure or render a visual. No final
 PBIX, screenshot or PDF export is claimed at this stage.
 
+First Desktop attempt: the project opened, but requested an enhanced-metadata
+upgrade; after that upgrade its tables disappeared and visuals reported
+`Missing_References`. The decorative background/theme were also absent.
+The corrected package explicitly sets `defaultPowerBIDataSourceVersion` to
+`powerBI_V3`, uses semantic-model definition version 4.0 and matches image/theme
+resource identifiers to their filenames. The corrected package still requires
+a fresh Desktop opening and refresh; its success is not yet established.
+Microsoft's [semantic model definition example](https://learn.microsoft.com/en-us/rest/api/fabric/articles/item-management/definitions/semantic-model-definition)
+shows the enhanced-metadata model property.
+
 ## Opening the project on Windows
 
 1. Extract the complete package with **Extract all**. Do not open files inside

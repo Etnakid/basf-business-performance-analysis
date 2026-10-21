@@ -3,6 +3,11 @@
 Questa è la prima implementazione nativa Power BI, da verificare in Desktop.
 Non è ancora un report collaudato. Non modifica il precedente file di preparazione.
 
+Pacchetto corretto V2: estrailo in una cartella nuova. Non sovrascrivere la prima
+prova già aperta o aggiornata da Power BI. Chiudi quella finestra prima di aprire
+questo progetto. Se compare ancora l'avviso rosso sui metadati avanzati, non premere
+«Aggiorna report»: mostra l'avviso per proseguire con la diagnosi.
+
 1. Estrai tutto lo ZIP: tasto destro sullo ZIP > **Estrai tutto** > **Estrai**.
 2. Nella cartella `BASF`, apri `assets`, fai doppio clic su
    `SpaceGrotesk-Medium.ttf` e premi **Installa**. Chiudi e riapri Power BI se era aperto.
