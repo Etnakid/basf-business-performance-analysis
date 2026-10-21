@@ -9,7 +9,7 @@ import subprocess
 import tempfile
 from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageFilter
 
-BASE = Path(__file__).resolve().parents[1] / 'powerbi/BASF'
+BASE = Path(__file__).resolve().parents[1] / 'powerbi'
 ASSETS = BASE / 'assets'
 OUT = BASE / 'BASF.Report/StaticResources/RegisteredResources'
 OUT.mkdir(parents=True, exist_ok=True)

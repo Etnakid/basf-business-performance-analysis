@@ -16,7 +16,7 @@ import urllib.parse
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-PROJECT = ROOT / 'powerbi/BASF'
+PROJECT = ROOT / 'powerbi'
 
 
 def run(schemas=False):

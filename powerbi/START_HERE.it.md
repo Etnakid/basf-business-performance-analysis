@@ -9,7 +9,7 @@ Mantieni insieme il file PBIP e le due cartelle del report e del modello.
 Il precedente file di preparazione non viene modificato.
 
 1. Estrai tutto lo ZIP: tasto destro sullo ZIP > **Estrai tutto** > **Estrai**.
-2. Nella cartella `BASF`, fai doppio clic su **BASF.pbip**.
+2. Nella cartella estratta, fai doppio clic su **BASF.pbip**.
    Tieni accanto le cartelle `BASF.Report` e `BASF.SemanticModel`.
 3. In Power BI Desktop premi **Home > Aggiorna** per caricare i dati incorporati.
 

@@ -2,18 +2,21 @@
 
 ## Status
 
-The one-page native report is implemented in `powerbi/BASF/BASF.pbip` and has
+The one-page native report is implemented in `powerbi/BASF.pbip` and has
 been opened and refreshed in Power BI Desktop. The project owner approved its
 final appearance. Screenshots were reviewed for the 2025 default, selection of
 2024 while retaining the full chart history, and missing ROCE in 2016.
 
-The project owner ran `powerbi/BASF/verify_in_desktop.dax` in Desktop DAX Query
+The project owner ran `powerbi/verify_in_desktop.dax` in Desktop DAX Query
 View and reported **all 22 checks as PASS** on 21 October 2026. This result was
 reported in chat; no result-table screenshot or machine-readable export was
 provided for independent inspection. This distinction is retained in the
 validation record below.
 
-The native PDF export and final portfolio screenshots are still to be supplied.
+The first supplied native PDF was rendered and inspected. Its foreground charts
+and values were misaligned with the background, so it was rejected as a
+portfolio artifact and has not been committed. A corrected native export and
+final portfolio images are still needed.
 No generated mockup is presented as an exported Power BI report. The PBIP/PBIR
 source is the repository deliverable; a compiled PBIX is not included.
 
@@ -40,14 +43,14 @@ native Power BI visuals.
 
 1. Extract the complete package with **Extract all**. Do not open files inside
    the ZIP or move the PBIP away from its two companion folders.
-2. Optionally, in `BASF/assets`, open `SpaceGrotesk-Medium.ttf` and click **Install**. Close
+2. Optionally, in `powerbi/assets`, open `SpaceGrotesk-Medium.ttf` and click **Install**. Close
    and reopen Power BI Desktop if it was already running. This font is supplied
    under the accompanying SIL Open Font License. Desktop and service font
    behaviour still need checking; native text has a Segoe UI/sans-serif fallback.
    The title and decorative labels are rendered in Space Grotesk in the background
    and do not require installing the font.
-3. Open `BASF/BASF.pbip` in a recent Power BI Desktop. The file
-   `BASF/BASF.Report/definition.pbir` is an alternative entry point. If project
+3. Open `powerbi/BASF.pbip` in a recent Power BI Desktop. The file
+   `powerbi/BASF.Report/definition.pbir` is an alternative entry point. If project
    support is disabled, enable the relevant Power BI Project option under
    **File > Options and settings > Options > Preview features** and restart.
 4. Click **Home > Refresh** to load the model. No PostgreSQL connection, password
@@ -140,7 +143,8 @@ Completed in Desktop, based on screenshots reviewed on 21 October 2026:
   changes, loss/negative-base guards and retained chart history. The DAX result
   table itself was not independently inspected.
 
-Remaining presentation work: native PDF export and clean portfolio screenshots.
+Remaining presentation work: correct the native PDF export alignment and produce
+clean portfolio images. The first PDF was supplied but failed visual inspection.
 Keyboard-only accessibility, Power BI Service font rendering and a full automatic
 comparison of every visual cell across every year have not been tested.
 
@@ -171,3 +175,18 @@ CapEx and cannot be subtracted from OCF to reproduce FCF.
 The background can be regenerated with `python tools/render_powerbi_background.py`
 (Pillow and Inkscape required). It contains no data values and is not a screenshot
 of a running Power BI report. Local caches and PBIX files are excluded from Git.
+
+## Repository layout
+
+The PBIP entry point is directly in `powerbi/`; an extra `BASF/` wrapper was
+removed. `BASF.Report` and `BASF.SemanticModel` are required companion folders.
+The deeper `definition/pages/.../visuals/...` directories belong to the PBIR
+format and are preserved. `assets/` contains the originals needed to regenerate
+the background; `tools/` contains the reproducible build and checking scripts.
+The superseded HTML prototype was removed; Git history preserves it.
+
+The supplied PDF's data marks appear scaled differently from the background.
+A retry at Desktop actual size/100% is a diagnostic step, not a verified fix.
+The project already uses a 16:9 canvas and Fit background mode. Do not alter
+financial data or reposition the working Desktop visuals to compensate for a
+single failed PDF export.

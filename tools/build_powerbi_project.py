@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'powerbi' / 'BASF'
+OUT = ROOT / 'powerbi'
 REPORT = OUT / 'BASF.Report'
 MODEL = OUT / 'BASF.SemanticModel'
 PAGE = REPORT / 'definition/pages/Performance'
