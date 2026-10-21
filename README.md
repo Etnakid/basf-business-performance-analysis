@@ -30,7 +30,7 @@ The eight SQL questions cover sales trends; EBITDA, EBIT and net income; margin 
 | PostgreSQL | Import checks, conditional aggregation, CTEs, window functions and a self-join |
 | Power BI | One page with nine KPI cards, four history charts, DAX comparisons and a disconnected reporting-year selector |
 
-I used AI assistance to inspect sources and develop the dataset, scripts, report definitions and documentation. I executed the Power Query transformation and SQL in my local tools and reviewed the report in Power BI Desktop. The [validation record](docs/powerbi_implementation.md) distinguishes automated checks, visual review and owner-reported DAX results.
+I executed the Power Query transformation and SQL queries locally and reviewed the report in Power BI Desktop. The project was developed with AI assistance; execution and validation are documented in the [validation record](docs/powerbi_implementation.md), which distinguishes automated checks, visual review and owner-reported DAX results.
 
 ## Data and definitions
 
