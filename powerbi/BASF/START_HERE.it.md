@@ -1,11 +1,12 @@
 # Aprire il progetto BASF
 
-Questa è la versione V3 del progetto nativo Power BI, con sfondo e font corretti.
-I nove valori 2025 e i quattro grafici erano visibili nella V2 dopo il refresh;
-la resa grafica della V3 va ancora verificata. Il precedente file di preparazione
+Questa è la versione V4 del progetto nativo Power BI, con titoli delle schede
+più grandi e in grassetto e disposizione corretta di numeri, unità e confronti.
+La V3 ha confermato il caricamento dello sfondo; gli spazi interni della V4
+vanno ancora verificati in Desktop. Il precedente file di preparazione
 non viene modificato.
 
-Pacchetto corretto V3: estrailo in una cartella nuova. Non sovrascrivere la prima
+Pacchetto corretto V4: estrailo in una cartella nuova. Non sovrascrivere la prima
 prova già aperta o aggiornata da Power BI. Chiudi quella finestra prima di aprire
 questo progetto. Se compare ancora l'avviso rosso sui metadati avanzati, non premere
 «Aggiorna report»: mostra l'avviso per proseguire con la diagnosi.

@@ -28,8 +28,14 @@ rendered. This nesting is documented in Microsoft's
 V3 also refreshes the theme resource identifier, corrects the bundled static font's
 family/style metadata, adds a Segoe UI/sans-serif fallback and increases card and
 axis text sizes. The title, photos, logo, rounded surfaces, labels and units are
-already in the registered background. V3 visual rendering still needs confirmation
-in Desktop; no user reconstruction of these elements is intended.
+already in the registered background. The V3 Desktop screenshot confirmed those
+elements rendered, but exposed overlap between native callouts and unit labels,
+and KPI headings were too small. V4 moves native callout boxes up 25 canvas units,
+moves comparison boxes up 10, increases headings from 12px medium to 17px bold,
+and gives units their own lower band. The bold heading widths were measured to
+fit the 136px text area in every card. V4 spacing still needs Desktop confirmation;
+no user reconstruction of these elements is intended. Source observations and
+financial calculations are unchanged by the V4 layout fix.
 
 ## Opening the project on Windows
 
@@ -118,7 +124,7 @@ Completed outside Desktop:
   filenames and theme registration checked.
 - Decorative background rendered and visually inspected separately.
 
-**Pending in Desktop for V3:** reopen/refresh, full DAX acceptance tests, font rendering, chart
+**Pending in Desktop for V4:** reopen/refresh, callout/unit separation, full DAX acceptance tests, font rendering, chart
 colours, negative profitability values, legends, label clipping, slicer operation,
 blank display, keyboard readability and final PDF/screenshot export. Run
 `BASF/verify_in_desktop.dax` in DAX Query View; it must return PASS on every row.

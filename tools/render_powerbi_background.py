@@ -31,8 +31,9 @@ for filename, x, width, opacity in [('night.jpg', 890, 710, .85), ('day.jpg', 72
 
 draw = ImageDraw.Draw(canvas)
 
-def text(x, y, value, size=12, fill='#B8CCB7'):
-    draw.text((x*S, y*S), value, font=ImageFont.truetype(str(ASSETS/'SpaceGrotesk-Medium.ttf'), size*S), fill=fill)
+def text(x, y, value, size=12, fill='#B8CCB7', strong=False):
+    face = 'SpaceGrotesk-Bold.ttf' if strong else 'SpaceGrotesk-Medium.ttf'
+    draw.text((x*S, y*S), value, font=ImageFont.truetype(str(ASSETS/face), size*S), fill=fill)
 
 def panel(x, y, w, h, radius=14):
     draw.rounded_rectangle((x*S, y*S, (x+w)*S, (y+h)*S), radius=radius*S, fill='#0B1C13', outline='#29452E', width=S)
@@ -70,9 +71,10 @@ for i, (a,b) in enumerate(labels):
     mask = Image.new('L', gradient.size)
     ImageDraw.Draw(mask).rounded_rectangle((0,0,158*S-1,141*S-1),radius=19*S,fill=255)
     canvas.paste(gradient, ((x+1)*S,210*S), mask)
-    text(x+12, 220, a, 12)
-    if b: text(x+12, 237, b, 10, '#A4B9AA')
-    text(x+12, 301, '%' if i in (4,8) else 'million EUR', 10, '#A4B9AA')
+    text(x+12, 219, a, 17, '#EAF5E2', strong=True)
+    if b:
+        text(x+12, 242, b, 15 if i == 5 else 11, '#B8CCB7', strong=(i == 5))
+    text(x+12, 303, '%' if i in (4,8) else 'million EUR', 11, '#A4B9AA')
     draw.line(((x+64)*S,351*S,(x+96)*S,351*S),fill='#78AC52',width=2*S)
 
 for x,y,w,h,title in [(32,370,826,240,'Sales trajectory'),(872,370,696,240,'Profitability'),

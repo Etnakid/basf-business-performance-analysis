@@ -187,13 +187,15 @@ def build():
         if percentage:
             # The decorative card already labels the original unit below the value.
             card_projection['format'] = '0.0'
-        visual('KPI%02d' % i, 'card', x + 3, 254, 156, 51,
+        # Classic cards render the callout lower than their nominal box centre.
+        # Offset verified against the V3 Desktop screenshot: keep clear of units.
+        visual('KPI%02d' % i, 'card', x + 3, 229, 156, 51,
                {'Values': [card_projection]},
                {'labels': obj(color=color('#F3FAEC'), fontSize=lit(26), fontFamily=lit(FONT),
                               labelDisplayUnits=lit(1), labelPrecision=lit(1 if percentage else 0)),
                 'categoryLabels': obj(show=lit(False))},
                alt=f'{name}: selected year. ' + ('Percent.' if percentage else 'Million EUR.'))
-        visual('Delta%02d' % i, 'card', x + 3, 316, 156, 24,
+        visual('Delta%02d' % i, 'card', x + 3, 306, 156, 24,
                {'Values': [projection(name + ' Change Label')]},
                {'labels': obj(color=color('#B8CCB7'), fontSize=lit(9), fontFamily=lit(FONT)),
                 'categoryLabels': obj(show=lit(False))}, alt=f'{name}: comparison with previous year')

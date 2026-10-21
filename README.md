@@ -167,7 +167,8 @@ the separate Power Query M script.
 The project definitions passed structural and Microsoft JSON schema checks.
 The first Desktop review confirmed the nine 2025 values and four native charts.
 I then corrected the background-image structure and font fallback in V3.
-**V3 appearance, year interactions and the full DAX acceptance checks remain pending**;
+The V3 review confirmed the background; V4 strengthens KPI headings and separates
+values from their unit labels. **V4 spacing, year interactions and the full DAX acceptance checks remain pending**;
 this is not yet a completed or validated dashboard. See the
 [opening instructions, measures and acceptance checks](docs/powerbi_implementation.md).
 

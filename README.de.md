@@ -172,7 +172,8 @@ Die Projektdefinitionen haben Strukturprüfungen und die Validierung anhand der
 Microsoft-JSON-Schemata bestanden. Die erste Desktop-Prüfung bestätigte die neun
 Werte für 2025 und vier native Diagramme. Anschließend habe ich in V3 die
 Hintergrundbild-Struktur und die Schrift-Ausweichlösung korrigiert.
-**V3-Darstellung, Jahresauswahl und vollständige DAX-Prüfungen stehen noch aus.** Der Bericht ist daher noch kein
+Die V3-Prüfung bestätigte den Hintergrund. V4 vergrößert die Kennzahlentitel und
+trennt Werte und Einheiten deutlicher. **V4-Abstände, Jahresauswahl und vollständige DAX-Prüfungen stehen noch aus.** Der Bericht ist daher noch kein
 fertig validiertes Dashboard. Die [Anleitung und Prüfschritte](docs/powerbi_implementation.md)
 dokumentieren den aktuellen Stand.
 
