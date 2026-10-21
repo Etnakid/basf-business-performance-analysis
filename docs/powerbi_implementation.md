@@ -13,10 +13,13 @@ reported in chat; no result-table screenshot or machine-readable export was
 provided for independent inspection. This distinction is retained in the
 validation record below.
 
-The first supplied native PDF was rendered and inspected. Its foreground charts
-and values were misaligned with the background, so it was rejected as a
-portfolio artifact and has not been committed. A corrected native export and
-final portfolio images are still needed.
+The first supplied native PDF had misaligned charts and values and was rejected.
+A subsequent native PDF supplied on 21 October 2026 was rendered and visually
+reviewed: its cards and four charts align with the background, all nine 2025
+values match the CSV, and labels and footer remain readable. This accepted
+[PDF](../powerbi/preview/report-2025.pdf) and its
+[directly rendered image](../powerbi/preview/report-2025.png) are now included.
+The export uses Italian numeric formatting; values remain in the original units.
 No generated mockup is presented as an exported Power BI report. The PBIP/PBIR
 source is the repository deliverable; a compiled PBIX is not included.
 
@@ -143,8 +146,9 @@ Completed in Desktop, based on screenshots reviewed on 21 October 2026:
   changes, loss/negative-base guards and retained chart history. The DAX result
   table itself was not independently inspected.
 
-Remaining presentation work: correct the native PDF export alignment and produce
-clean portfolio images. The first PDF was supplied but failed visual inspection.
+A subsequent native PDF and its rendered portfolio image were reviewed and
+accepted on 21 October 2026, resolving the earlier presentation blocker. This
+static review does not independently rerun Desktop interactions or DAX.
 Keyboard-only accessibility, Power BI Service font rendering and a full automatic
 comparison of every visual cell across every year have not been tested.
 
@@ -185,8 +189,24 @@ format and are preserved. `assets/` contains the originals needed to regenerate
 the background; `tools/` contains the reproducible build and checking scripts.
 The superseded HTML prototype was removed; Git history preserves it.
 
-The supplied PDF's data marks appear scaled differently from the background.
-A retry at Desktop actual size/100% is a diagnostic step, not a verified fix.
-The project already uses a 16:9 canvas and Fit background mode. Do not alter
-financial data or reposition the working Desktop visuals to compensate for a
-single failed PDF export.
+The first export's scaling issue was not reproduced in the subsequently supplied
+PDF. No data, background or visual positions were changed for this documentation
+review. The accepted PDF records the 2025 view; year interactions remain available
+in the editable PBIP.
+
+## Repeatable structural checks
+
+From the repository root, using Python 3.12 (the tested version):
+
+```text
+python tools/check_powerbi_project.py
+python -m pip install jsonschema==4.26.0
+python tools/check_powerbi_project.py --schemas
+```
+
+The first command uses only the standard library. Schema validation additionally
+needs `jsonschema` and internet access to fetch Microsoft's declared schemas.
+Both checks passed again on 21 October 2026: exact CSV bytes and checksum,
+90 unique observations, missing 2016 ROCE, 23 visual bindings/canvas bounds,
+46 measures and 30 declared-schema definitions. These are structural checks,
+not execution of DAX or the Power BI rendering engine.

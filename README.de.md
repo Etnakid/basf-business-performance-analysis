@@ -2,179 +2,95 @@
 
 [English](README.md) | **Deutsch**
 
-Ich lebe in Ludwigshafen am Rhein, wo BASF die größte industrielle Präsenz der Stadt ist. Deshalb wollte ich mir das Unternehmen, das mein direktes Umfeld so stark prägt, genauer ansehen und verstehen, wie sich seine finanzielle Entwicklung im Laufe der Jahre verändert hat.
+Ein unabhängiges Portfolio-Projekt zur Analyse von **neun Finanzkennzahlen für 2016–2025** mit **Power Query, PostgreSQL und Power BI**.
 
-Für dieses Projekt habe ich mich bewusst auf Finanzdaten konzentriert. Umsatz, Profitabilität, Cashflow, Investitionen und Kapitalrendite waren die passenden Kennzahlen für die Analyse, die ich durchführen wollte. Mit diesem klaren Schwerpunkt konnte ich das Projekt überschaubar halten und mich gezielt mit den wirtschaftlichen Ergebnissen beschäftigen.
+Ich lebe in Ludwigshafen am Rhein, wo BASF mein Umfeld stark prägt. Deshalb wollte ich verstehen, wie sich Umsatz, Profitabilität, Cashflow, Investitionen und Kapitalrendite über die Jahre entwickelt haben. Der klare Fokus auf Finanzdaten hält das Projekt überschaubar.
 
-Das Projekt umfasst die Jahre **2016–2025** und verbindet **Power Query, PostgreSQL und Power BI**. Die Datenaufbereitung und die SQL-Analyse sind abgeschlossen. Als Nächstes erstelle ich den Power-BI-Bericht.
+[![Power-BI-Bericht: Übersicht 2025](powerbi/preview/report-2025.png)](powerbi/preview/report-2025.pdf)
 
-## Was ich herausfinden wollte
+**[PDF ansehen](powerbi/preview/report-2025.pdf)** · [Editierbares Power-BI-Projekt](powerbi/BASF.pbip) · [SQL-Analyse](sql/03_business_analysis.sql)
 
-Meine Analyse orientiert sich an acht Fragen:
+## Wichtigste Ergebnisse
 
-1. Wie hat sich der Umsatz von BASF zwischen 2016 und 2025 verändert?
-2. Wie haben sich EBITDA, EBIT und Jahresüberschuss entwickelt?
-3. In welchen Jahren war die EBITDA-Marge vor Sondereinflüssen am höchsten bzw. am niedrigsten?
-4. Wie haben sich der operative Cashflow und der Free Cashflow verändert?
-5. Wie haben sich Investitionen und ROCE entwickelt?
-6. In welchen Jahren gab es die größten jährlichen Umsatzsteigerungen und Umsatzrückgänge?
-7. In welchen Jahren hat BASF einen Jahresfehlbetrag ausgewiesen?
-8. Wie schneidet das Jahr 2025 bei den neun ausgewählten Kennzahlen im Vergleich zu 2024 ab?
+- Der Umsatz stieg von **57.550 Millionen EUR (2016) auf 59.657 Millionen EUR (2025), um 3,66 %**, mit dem Höchststand 2022.
+- Der größte jährliche Umsatzanstieg entfiel auf **2021 (+32,88 %)**, der stärkste Rückgang auf **2023 (−21,10 %)**.
+- Die EBITDA-Marge vor Sondereinflüssen war **2016 am höchsten (17,9 %)** und **2025 am niedrigsten (11,0 %)**.
+- Jahresfehlbeträge traten **2020 und 2022** auf; 2022 blieb das EBIT positiv.
+- **2025 gegenüber 2024** sanken Umsatz (**−2,91 %**) und operativer Cashflow (**−19,23 %**), während Jahresüberschuss (**+24,73 %**) und Free Cashflow (**+79,41 %**) stiegen.
 
-## Datenquellen
+Die Ergebnisse beschreiben die veröffentlichten Datenreihen. Anpassungen und nicht fortgeführte Aktivitäten schränken die Vergleichbarkeit ein; die Veränderungen sind nicht automatisch Wachstum auf vergleichbarer Basis. Siehe [Ergebnisse und Interpretationsregeln](docs/sql_analysis.md).
 
-Ich habe zwei offizielle Excel-Dateien aus dem **BASF-Bericht 2025** verwendet:
+## Analyse und eingesetzte Fähigkeiten
 
-- [Zehnjahresübersicht / Ten-Year Summary](https://report.basf.com/2025/en/overviews/ten-year-summary.html): `10y-overview-basf-ar25.xlsx` mit den historischen Datenreihen für die Analyse.
-- [Download-Center](https://report.basf.com/2025/en/services/downloads.html): `all-tables-basf-ar25.xlsx` zum Abgleich der Übersicht und zur Klärung ausgewählter Kennzahlendefinitionen.
+Die acht SQL-Fragen behandeln Umsatztrends; EBITDA, EBIT und Jahresüberschuss; Margenextrema; Cashflow; Anlagenzugänge und ROCE; jährliche Umsatzranglisten; Verlustjahre sowie den Vergleich aller neun Kennzahlen zwischen 2025 und 2024.
 
-Die unveränderten Originaldateien bewahre ich lokal unter `data/raw/` auf. Sie sind von GitHub ausgeschlossen. Im Repository liegen der aufbereitete Datensatz, das Transformationsskript, die SQL-Abfragen und die Dokumentation.
-
-## Meine neun ausgewählten Kennzahlen
-
-| Kennzahl | Einheit |
+| Schritt | Enthaltene Arbeit |
 | --- | --- |
-| Umsatz (Sales) | Millionen EUR |
-| EBITDA | Millionen EUR |
-| EBIT | Millionen EUR |
-| Jahresüberschuss/-fehlbetrag (Net Income) | Millionen EUR |
-| EBITDA-Marge vor Sondereinflüssen | % |
-| Operativer Cashflow (Operating Cash Flow) | Millionen EUR |
-| Free Cashflow | Millionen EUR |
-| Investitionen: Zugänge zu Sachanlagen und immateriellen Vermögenswerten | Millionen EUR |
-| ROCE | % |
+| Power Query | Quellzeilen auswählen, Jahre entpivotieren, bekannte Fußnoten entfernen, Datentypen setzen und fehlende Werte erhalten |
+| PostgreSQL | Importprüfungen, bedingte Aggregation, CTEs, Fensterfunktionen und Self-Join |
+| Power BI | Eine Seite mit neun Kennzahlenkarten, vier Verlaufsdiagrammen, DAX-Vergleichen und einer nicht verknüpften Jahresauswahl |
 
-Ich habe die ursprünglichen Einheiten und Definitionen von BASF beibehalten. Die veröffentlichte EBITDA-Marge wird **vor Sondereinflüssen** ausgewiesen, während die ausgewählte EBITDA-Reihe unbereinigt ist. Deshalb lässt sich diese Marge nicht einfach durch Division des ausgewählten EBITDA durch den Umsatz nachvollziehen.
+Ich habe KI-Unterstützung für Quellenprüfung, Datensatz, Skripte, Berichtsdefinitionen und Dokumentation eingesetzt. Die Power-Query-Transformation und SQL-Abfragen habe ich lokal ausgeführt und den Bericht in Power BI Desktop geprüft. Das [Prüfprotokoll](docs/powerbi_implementation.md) unterscheidet automatisierte Prüfungen, visuelle Kontrollen und vom Eigentümer gemeldete DAX-Ergebnisse.
 
-Die Investitionsreihe erfasst **Anlagenzugänge**. Sie unterscheidet sich von den Auszahlungen, die BASF zur Berechnung des Free Cashflows verwendet.
+## Daten und Definitionen
 
-## Wie ich die Daten aufbereitet habe
+Die Quelle ist der offizielle **BASF-Bericht 2025**:
 
-Ich habe KI-Unterstützung eingesetzt, um die Quelldateien zu prüfen, den Datensatz aufzubereiten, das Power-Query-M-Skript zu erstellen und die SQL-Abfragen sowie die Dokumentation auszuarbeiten. Anschließend habe ich die Power-Query-Transformation in Power BI Desktop und die SQL-Abfragen in meiner lokalen PostgreSQL-Datenbank ausgeführt und die Ergebnisse schrittweise geprüft.
+- [Zehnjahresübersicht](https://report.basf.com/2025/en/overviews/ten-year-summary.html): [Excel-Datei](https://report.basf.com/2025/en/_assets/downloads/10-year-summary-basf-ar25.xlsx).
+- [Download-Center](https://report.basf.com/2025/en/services/downloads.html): [Alle Tabellen](https://report.basf.com/2025/en/_assets/downloads/all-tables-basf-ar25.xlsx), für Abgleich und Definitionen.
 
-Das Power-Query-Skript:
+Die [aufbereitete CSV-Datei](data/processed/basf_kpis_2016_2025.csv) enthält **90 Beobachtungen: zehn Jahre × neun Kennzahlen**, mit `year | kpi | value | unit`. Die Kennzahlen sind Sales, EBITDA, EBIT, Net Income, EBITDA Margin before special items, Operating Cash Flow, Free Cash Flow, Anlagenzugänge und ROCE.
 
-- Liest die unveränderte Excel-Datei mit der Zehnjahresübersicht ein.
-- Wählt ausschließlich die neun Finanzkennzahlen aus.
-- Entfernt Überschriften, Hinweise und nicht benötigte Zeilen.
-- Wandelt die Jahresspalten in Zeilen um.
-- Entfernt bekannte Fußnotenbuchstaben an Zahlen, ohne deren Wert zu verändern.
-- Behält fehlende Werte bei, ohne sie durch Schätzungen zu ersetzen.
+- Geldbeträge bleiben in **Millionen EUR**; Marge und ROCE in Prozenteinheiten.
+- **ROCE 2016 fehlt** und bleibt ein leeres CSV-Feld bzw. SQL-/Power-BI-null.
+- Die Marge wird **vor Sondereinflüssen** ausgewiesen; die EBITDA-Reihe ist unbereinigt. Aus EBITDA geteilt durch Umsatz ergibt sich diese Marge daher nicht.
+- Investitionen bedeuten **Zugänge zu Sachanlagen und immateriellen Vermögenswerten**, keine Auszahlungen. Die Reihe eignet sich nicht zur Rekonstruktion des Free Cashflows durch Abzug vom operativen Cashflow.
+- Margen- und ROCE-Veränderungen werden in **Prozentpunkten** angegeben.
 
-Der aufbereitete Datensatz hat diese Struktur:
+Alle 90 Beobachtungen wurden am 21. Oktober 2026 erneut mit beiden offiziellen Excel-Dateien abgeglichen. Quellzeilen, fehlende Werte und Anpassungen stehen in den [Hinweisen zur Datenaufbereitung](docs/data_preparation.md). Originaldateien sind von Git ausgeschlossen und werden für die Rekonstruktion separat heruntergeladen.
+
+## Nachvollziehen oder prüfen
+
+### Bericht ansehen
+
+Für einen schnellen Überblick genügt das PDF oben. Für Interaktionen das **gesamte Repository** herunterladen oder klonen, die Begleitordner zusammenlassen und `powerbi/BASF.pbip` in Power BI Desktop öffnen. **Aktualisieren** lädt den exakt eingebetteten CSV-Datenstand. Datenbank-Zugangsdaten, Originaldateien und Python sind dafür nicht erforderlich. Es werden keine neuen BASF-Daten heruntergeladen.
+
+2025 ist vorausgewählt. Eine andere Jahresauswahl ändert die Karten; alle vier Diagramme behalten 2016–2025. ROCE bleibt für 2016 leer. Siehe [Power-BI-Einrichtung und Prüfung](docs/powerbi_implementation.md) oder die [italienische Kurzanleitung](powerbi/START_HERE.it.md).
+
+### SQL-Analyse ausführen
+
+Der [PostgreSQL-Anleitung](docs/postgresql_setup.md) folgen, eine leere Tabelle anlegen und die gespeicherte CSV importieren. Zuerst `sql/02_data_checks.sql`, danach die acht nummerierten Abfragen in `sql/03_business_analysis.sql` ausführen. Dafür sind weder Originaldateien noch Power BI nötig. Die Skripte wurden am 21. Oktober 2026 erfolgreich in einer isolierten **PostgreSQL-17**-Datenbank erneut ausgeführt.
+
+### Transformation aus der Quelle wiederholen
+
+1. Beide Excel-Dateien oben in einen lokalen Ordner `data/raw/` herunterladen.
+2. In Power BI Desktop oder Excel eine leere Abfrage erstellen und [power_query/basf_kpis.m](power_query/basf_kpis.m) in den erweiterten Editor einfügen.
+3. `RawFile` auf den lokalen Pfad zu `10-year-summary-basf-ar25.xlsx` setzen und aktualisieren.
+4. 90 Zeilen, neun Kennzahlen und den einzigen fehlenden Wert ROCE 2016 prüfen.
+
+Die ursprüngliche Power-Query-Vorschau wurde geprüft. Ein vollständiger exportierter Power-Query-Datensatz wurde nicht automatisiert mit der CSV verglichen. Der unabhängige Excel-CSV-Abgleich umfasst sämtliche Quellbeobachtungen.
+
+### Optionale Projektpflege
+
+Python ist nur zum Erstellen oder Prüfen der Definitionen erforderlich. Vom Repository-Hauptordner aus (mit Python 3.12 getestet):
 
 ```text
-year | kpi | value | unit
+python tools/check_powerbi_project.py
+python -m pip install jsonschema==4.26.0
+python tools/check_powerbi_project.py --schemas
 ```
 
-Er enthält **90 Zeilen: zehn Jahre × neun Kennzahlen**.
-
-Für ROCE im Jahr 2016 weist BASF in der Quelltabelle keinen Wert aus. Ich habe diese Angabe als fehlend beibehalten: als leeres Feld in der CSV-Datei und als `NULL` in PostgreSQL.
-
-Zur Transparenz: Die im Repository gespeicherte CSV-Datei wurde mit KI-Unterstützung direkt aus der Quelldatei erstellt und mit den entsprechenden Zellen abgeglichen. Das Power-Query-Skript wurde anschließend erfolgreich ausgeführt und seine Vorschau geprüft. Einen vollständigen automatisierten Vergleich zwischen einem exportierten Power-Query-Ergebnis und der gespeicherten CSV-Datei habe ich nicht durchgeführt.
-
-Die genauen Quellzeilen, Kennzahlendefinitionen und Prüfungen sind in den [Hinweisen zur Datenaufbereitung](docs/data_preparation.md) dokumentiert.
-
-## SQL-Analyse
-
-Ich habe die aufbereitete CSV-Datei in die Datenbank `basf_business_performance` importiert und in der Tabelle `public.basf_kpis` gespeichert.
-
-Vor der Analyse habe ich geprüft, ob der Import Folgendes enthält:
-
-- 90 Zeilen.
-- Zehn Jahre von 2016 bis 2025.
-- Neun unterschiedliche Kennzahlen.
-- Genau einen fehlenden Wert: ROCE für 2016.
-
-Zur Beantwortung der acht Fragen nutze ich Filter, bedingte Aggregationen, Common Table Expressions, Fensterfunktionen und einen Self-Join.
-
-Alle acht Abfragen wurden erfolgreich in **PostgreSQL 17 über pgAdmin** ausgeführt. Die Zeilenanzahl und die angezeigten Ergebnisse wurden mit den erwarteten Ausgaben abgeglichen. Zusätzlich wurden die Skripte mit derselben CSV-Datei separat in PGlite auf Basis von PostgreSQL 18.6 getestet.
-
-Die SQL-Dateien:
-
-- [Tabelle anlegen](sql/01_create_table.sql)
-- [Importierte Daten prüfen](sql/02_data_checks.sql)
-- [Die acht Analysefragen beantworten](sql/03_business_analysis.sql)
-
-## Was die Analyse zeigt
-
-In den veröffentlichten Daten sind mir besonders diese Ergebnisse aufgefallen:
-
-- Der Umsatz stieg von **57.550 Millionen EUR im Jahr 2016 auf 59.657 Millionen EUR im Jahr 2025**. Das entspricht einem Anstieg von **3,66 %**, wobei es innerhalb dieses Zeitraums deutliche Schwankungen gab.
-- Der größte jährliche Umsatzanstieg entfiel auf **2021 (+32,88 %)**, der stärkste Rückgang auf **2023 (−21,10 %)**.
-- Die EBITDA-Marge vor Sondereinflüssen war **2016 mit 17,9 % am höchsten** und **2025 mit 11,0 % am niedrigsten**.
-- BASF wies **2020 und 2022 Jahresfehlbeträge** aus. Im Jahr 2022 blieb das EBIT trotz des Jahresfehlbetrags positiv.
-- Im Vergleich **2025 zu 2024** sank der Umsatz um **2,91 %** und der operative Cashflow um **19,23 %**. Gleichzeitig stiegen der Jahresüberschuss um **24,73 %** und der Free Cashflow um **79,41 %**.
-
-Diese Ergebnisse haben mir gezeigt, warum mehrere Finanzkennzahlen gemeinsam betrachtet werden sollten: Umsatz, Ergebnis und Cashflow können sich in unterschiedliche Richtungen entwickeln.
-
-Die vollständigen Ergebnisse und Interpretationsregeln stehen in den [Hinweisen zur SQL-Analyse](docs/sql_analysis.md).
-
-## Wichtige Einschränkungen
-
-BASF kennzeichnet ausgewählte historische Zahlen als angepasst oder neu dargestellt. Dazu gehören Werte für **2017, 2018 und 2024** im Zusammenhang mit nicht fortgeführten Aktivitäten. Ich habe die Zahlen so übernommen, wie sie in der Zehnjahresübersicht 2025 veröffentlicht wurden, und die zugehörigen Hinweise dokumentiert.
-
-Die berechneten Veränderungen beschreiben deshalb die **veröffentlichten Datenreihen**. Sie sollten nicht automatisch als Wachstum auf vergleichbarer Basis interpretiert werden.
-
-Außerdem unterscheide ich zwischen **prozentualen Veränderungen** und Veränderungen in **Prozentpunkten**. Steigt beispielsweise der ROCE von 5,1 % auf 5,8 %, entspricht das einem Anstieg um **0,7 Prozentpunkte**.
-
-Der Datensatz ermöglicht beschreibende Vergleiche. Allein daraus lassen sich weder die Ursachen eines Verlusts noch der Erfolg einer Investitionsentscheidung ableiten. Ebenso lässt sich damit nicht nachweisen, dass Veränderungen der Investitionen Veränderungen des ROCE verursacht haben.
+Die Schemaprüfung benötigt Internetzugang. Sie prüft Struktur und eingebettete Daten, führt aber weder DAX aus noch rendert sie Power BI. Zum Neuerstellen nach CSV-Änderungen die [Pflegehinweise](docs/powerbi_implementation.md) beachten; der Builder überschreibt die Berichtsdefinitionen.
 
 ## Aufbau des Repositorys
 
 ```text
-data/
-  processed/     Aufbereiteter Finanzdatensatz
-
-power_query/     Reproduzierbares Power-Query-M-Skript
-sql/             Tabellendefinition, Datenprüfungen und Analyseabfragen
-docs/            Quellen, Methodik, Ergebnisse und Einschränkungen
-powerbi/         Freigegebener Entwurf und native PBIP-Umsetzung
-tools/           Projekterstellung und Strukturprüfungen
+data/processed/   Geprüfter Datensatz mit 90 Zeilen
+power_query/     Transformation der Originaldatei
+sql/             Tabelle, Importprüfungen und acht Analysefragen
+docs/            Quellen, Methodik, Ergebnisse und Prüfprotokolle
+powerbi/         PBIP, Bericht/Modell, DAX, Assets und Vorschau
+tools/           Builder, Strukturprüfung und Hintergrund-Renderer
 ```
 
-Die Originaldateien liegen lokal unter `data/raw/`. Dieser Ordner ist von Git ausgeschlossen.
-
-## Das Projekt nachvollziehen
-
-1. Die beiden offiziellen BASF-Excel-Dateien herunterladen und unter `data/raw/` ablegen.
-2. In Power BI Desktop oder Excel eine leere Abfrage erstellen.
-3. Den erweiterten Editor öffnen und den Inhalt von `power_query/basf_kpis.m` einfügen.
-4. `RawFile` auf den lokalen Pfad der Zehnjahresdatei setzen und die Abfrage aktualisieren.
-5. Die erwarteten 90 Zeilen und den fehlenden ROCE-Wert für 2016 prüfen.
-6. Der [PostgreSQL-Anleitung](docs/postgresql_setup.md) folgen, um die Tabelle anzulegen und die aufbereitete CSV-Datei zu importieren.
-7. Die Datenprüfungen und anschließend die acht Analyseabfragen einzeln ausführen.
-
-Die technischen Detaildokumente und die Kommentare in den SQL-Dateien sind auf Englisch verfasst.
-
-## Nativer Power-BI-Bericht
-
-Ich habe [den PBIP-Bericht](powerbi/BASF.pbip) mit neun Kennzahlenkarten,
-vier historischen Diagrammen und einer Jahresauswahl erstellt. Die einzelne
-Seite im Querformat verbindet einen geometrischen Hintergrund in Smaragdgrün/Teal,
-abgerundete Karten, weich eingeblendete Fotos aus Ludwigshafen und das originale
-BASF-Logo.
-
-Der Bericht enthält einen portablen Stand der aufbereiteten CSV-Datei. Zum Öffnen
-sind keine Datenbank-Zugangsdaten oder lokalen Quelldateipfade erforderlich. Das
-separate Power-Query-M-Skript bleibt der dokumentierte Weg zur Bereinigung der
-Originaldateien.
-
-Ich habe den Bericht in Power BI Desktop geprüft: 2025 ist vorausgewählt, die
-Auswahl von 2024 aktualisiert die Karten bei unverändertem Zeitraum 2016–2025 in
-den Diagrammen, und der fehlende ROCE-Wert für 2016 bleibt leer. Außerdem habe ich
-die bereitgestellte DAX-Prüfabfrage ausgeführt und **22 PASS-Ergebnisse** gemeldet.
-Das [Prüfprotokoll](docs/powerbi_implementation.md) unterscheidet zwischen den
-geprüften Bildschirmaufnahmen und dem im Chat gemeldeten DAX-Ergebnis.
-Strukturprüfungen bestätigten zusätzlich den exakten CSV-Datenstand und die
-Microsoft-JSON-Schemata. Ein nativer PDF-Export und die endgültigen Portfolio-
-Screenshots stehen noch aus.
-
-Die [Power-BI-Dokumentation](docs/powerbi_implementation.md) beschreibt Einrichtung,
-Kennzahlendefinitionen und Prüfabfrage.
-
-## Verbleibende Präsentationsarbeit
-
-Ich werde einen nativen PDF-Export und übersichtliche Bildschirmaufnahmen für
-Leser ergänzen, die Power BI Desktop nicht verwenden. Das Repository enthält
-bereits die editierbaren Definitionen des Berichts und des semantischen Modells.
+Das native PDF und sein gerendertes Bild zeigen die Ansicht 2025. Das editierbare PBIP ist enthalten; eine kompilierte PBIX-Datei nicht. Bildquellen und Schriftlizenz stehen in den [Designnachweisen](docs/powerbi_design.md). Das unabhängige Portfolio-Projekt wird nicht von BASF gesponsert. Technische Detaildokumente und SQL-Kommentare sind auf Englisch.

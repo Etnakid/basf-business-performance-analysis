@@ -2,173 +2,95 @@
 
 **English** | [Deutsch](README.de.md)
 
-I live in Ludwigshafen am Rhein, where BASF is the city’s largest industrial presence. I wanted to take a closer look at the company behind such a prominent part of my surroundings and understand how its financial performance has changed over time.
+An independent portfolio project analysing **nine financial KPIs from 2016–2025**, using **Power Query, PostgreSQL and Power BI**.
 
-For this project, I chose to focus exclusively on financial data. Sales, profitability, cash flow, investments and returns were the most relevant measures for the analysis I wanted to carry out. Keeping this focus also helped me build a manageable project without spreading the analysis across too many topics.
+I live in Ludwigshafen am Rhein, where BASF is a prominent part of my surroundings. I wanted to understand how its sales, profitability, cash flow, investments and returns changed over time, while keeping the analysis focused and manageable.
 
-The project covers **2016–2025** and combines **Power Query, PostgreSQL and Power BI**. Data preparation and SQL analysis are complete; the Power BI report is the next step.
+[![Power BI report: 2025 overview](powerbi/preview/report-2025.png)](powerbi/preview/report-2025.pdf)
 
-## What I wanted to understand
+**[View the PDF](powerbi/preview/report-2025.pdf)** · [Open the editable Power BI project](powerbi/BASF.pbip) · [Read the SQL analysis](sql/03_business_analysis.sql)
 
-I organised the analysis around eight questions:
+## Main findings
 
-1. How did BASF’s sales change between 2016 and 2025?
-2. How did EBITDA, EBIT and net income evolve?
-3. Which years recorded the highest and lowest EBITDA margin before special items?
-4. How did operating cash flow and free cash flow change?
-5. How did investments and ROCE evolve?
-6. Which years recorded the largest annual sales increases and declines?
-7. In which years did BASF report a net loss?
-8. How did 2025 compare with 2024 across the nine selected KPIs?
-
-## Data sources
-
-I used two official Excel workbooks from the **BASF Report 2025**:
-
-- [Ten-Year Summary](https://report.basf.com/2025/en/overviews/ten-year-summary.html): `10y-overview-basf-ar25.xlsx`, containing the historical series used in the analysis.
-- [Download Center](https://report.basf.com/2025/en/services/downloads.html): `all-tables-basf-ar25.xlsx`, used to cross-check the summary and clarify selected financial definitions.
-
-The original workbooks are preserved locally in `data/raw/` and excluded from GitHub. The repository contains the processed dataset, transformation script, SQL queries and documentation.
-
-## The nine KPIs I selected
-
-| KPI | Unit |
-| --- | --- |
-| Sales | Million EUR |
-| EBITDA | Million EUR |
-| EBIT | Million EUR |
-| Net Income | Million EUR |
-| EBITDA Margin before special items | % |
-| Operating Cash Flow | Million EUR |
-| Free Cash Flow | Million EUR |
-| Investments: additions to property, plant and equipment and intangible assets | Million EUR |
-| ROCE | % |
-
-I kept BASF’s original units and definitions. In particular, the reported EBITDA margin is **before special items**, while the EBITDA series is unadjusted. These two measures should not be assumed to reconcile through a simple division.
-
-The investment series represents **additions to assets**. It differs from the cash payments used in BASF’s free cash flow calculation.
-
-## How I prepared the data
-
-I used an AI-assisted workflow to help inspect the source files, prepare the dataset, write the Power Query M script and develop the SQL queries and documentation. I then executed the Power Query transformation in Power BI Desktop and the SQL queries in my local PostgreSQL database, reviewing the results along the way.
-
-The Power Query script:
-
-- Reads the original ten-year workbook.
-- Selects only the nine financial KPIs.
-- Removes headings, notes and unrelated rows.
-- Converts the year columns into a long table.
-- Removes known footnote letters attached to numbers while preserving their values.
-- Retains missing data without replacing it with estimates.
-
-The processed dataset has this structure:
-
-```text
-year | kpi | value | unit
-```
-
-It contains **90 rows: ten years × nine KPIs**.
-
-BASF does not provide a ROCE value for 2016 in the source table. I kept that observation as a missing value, represented by an empty field in the CSV and `NULL` in PostgreSQL.
-
-For transparency, the committed CSV was prepared directly from the source workbook with AI assistance and checked against its cells. The Power Query script was subsequently executed successfully and its preview reviewed. I did not perform a full automated comparison between an exported Power Query result and the committed CSV.
-
-The exact source rows, KPI definitions and validation details are documented in [Data preparation notes](docs/data_preparation.md).
-
-## SQL analysis
-
-I imported the processed CSV into the `basf_business_performance` database and stored it in `public.basf_kpis`.
-
-Before analysing the data, I checked that the import contained:
-
-- 90 rows.
-- Ten years, from 2016 to 2025.
-- Nine distinct KPIs.
-- Exactly one missing value: ROCE in 2016.
-
-The SQL analysis uses filtering, conditional aggregation, common table expressions, window functions and a self-join to answer the eight questions.
-
-All eight queries were executed successfully in **PostgreSQL 17 through pgAdmin**. Their row counts and displayed results were reviewed against the expected outputs. The scripts were also tested separately using the same CSV in PGlite, based on PostgreSQL 18.6.
-
-The SQL files are available here:
-
-- [Create the table](sql/01_create_table.sql)
-- [Check the imported data](sql/02_data_checks.sql)
-- [Answer the eight business questions](sql/03_business_analysis.sql)
-
-## What the analysis shows
-
-A few findings stood out in the published data:
-
-- Sales rose from **€57,550 million in 2016 to €59,657 million in 2025**, an increase of **3.66%**, with substantial fluctuations between those years.
-- The largest annual sales increase occurred in **2021 (+32.88%)**, while the largest decline occurred in **2023 (−21.10%)**.
+- Sales rose from **€57,550 million in 2016 to €59,657 million in 2025 (+3.66%)**, peaking in 2022.
+- The largest annual sales increase was **2021 (+32.88%)**; the largest decline was **2023 (−21.10%)**.
 - The EBITDA margin before special items was highest in **2016 (17.9%)** and lowest in **2025 (11.0%)**.
-- BASF reported net losses in **2020 and 2022**. In 2022, EBIT remained positive despite the net loss.
+- Net losses occurred in **2020 and 2022**; EBIT remained positive in 2022.
 - In **2025 versus 2024**, sales fell **2.91%** and operating cash flow fell **19.23%**, while net income rose **24.73%** and free cash flow rose **79.41%**.
 
-These results helped me see why several financial measures need to be considered together: sales, profit and cash flow can move in different directions.
+These are descriptive comparisons of BASF's published series. Restatements and discontinued operations limit comparability; the changes are not necessarily like-for-like growth. See the [findings and interpretation rules](docs/sql_analysis.md).
 
-The complete findings and interpretation rules are available in [SQL analysis notes](docs/sql_analysis.md).
+## Analysis and skills demonstrated
 
-## Important limitations
+The eight SQL questions cover sales trends; EBITDA, EBIT and net income; margin extrema; cash flow; investment additions and ROCE; annual sales rankings; loss years; and a nine-KPI comparison of 2025 with 2024.
 
-BASF marks selected historical figures as restated or adjusted, including figures for **2017, 2018 and 2024** associated with discontinued operations. I used the values as published in the 2025 ten-year summary and documented these notes.
+| Stage | Work included |
+| --- | --- |
+| Power Query | Select source rows, unpivot years, remove known footnote markers, set types and preserve missing data |
+| PostgreSQL | Import checks, conditional aggregation, CTEs, window functions and a self-join |
+| Power BI | One page with nine KPI cards, four history charts, DAX comparisons and a disconnected reporting-year selector |
 
-The changes calculated here therefore describe the **published series**. They should not automatically be interpreted as like-for-like growth.
+I used AI assistance to inspect sources and develop the dataset, scripts, report definitions and documentation. I executed the Power Query transformation and SQL in my local tools and reviewed the report in Power BI Desktop. The [validation record](docs/powerbi_implementation.md) distinguishes automated checks, visual review and owner-reported DAX results.
 
-I also distinguish between **percent changes** and **percentage-point changes**. For example, ROCE moving from 5.1% to 5.8% is an increase of **0.7 percentage points**.
+## Data and definitions
 
-This dataset supports descriptive comparisons. By itself, it cannot explain the causes of a loss, establish whether an investment decision was successful or demonstrate that changes in investment caused changes in ROCE.
+The source is the official **BASF Report 2025**:
+
+- [Ten-Year Summary](https://report.basf.com/2025/en/overviews/ten-year-summary.html): [Excel workbook](https://report.basf.com/2025/en/_assets/downloads/10-year-summary-basf-ar25.xlsx).
+- [Download Center](https://report.basf.com/2025/en/services/downloads.html): [all tables workbook](https://report.basf.com/2025/en/_assets/downloads/all-tables-basf-ar25.xlsx), used for cross-checks and definitions.
+
+The [processed CSV](data/processed/basf_kpis_2016_2025.csv) contains **90 observations: ten years × nine KPIs**, with columns `year | kpi | value | unit`. The nine KPIs are Sales, EBITDA, EBIT, Net Income, EBITDA Margin before special items, Operating Cash Flow, Free Cash Flow, investment additions and ROCE.
+
+- Monetary amounts are in **million EUR**; margin and ROCE retain percent units.
+- **2016 ROCE is missing**, preserved as an empty CSV field and SQL/Power BI null.
+- The margin is **before special items**; the EBITDA series is unadjusted. Dividing that EBITDA by sales does not reproduce the reported margin.
+- Investments are **additions to PPE and intangible assets**, not cash payments. Do not subtract this series from operating cash flow to reconstruct free cash flow.
+- Changes in margin and ROCE use **percentage points**, not percent changes.
+
+All 90 observations were rechecked against both official workbooks on 21 October 2026. Source rows, missingness and restatement notes are in [data preparation](docs/data_preparation.md). Raw workbooks are excluded from Git; download them for source reconstruction.
+
+## Reproduce or review
+
+### View the report
+
+Use the PDF above for a quick review. For interaction, download or clone the **whole repository**, keep the companion folders together and open `powerbi/BASF.pbip` in Power BI Desktop. Click **Refresh**. The report embeds the exact processed CSV snapshot, so no database credentials, raw files or Python installation are needed. Refresh reloads that snapshot; it does not download new BASF data.
+
+The saved selection is 2025. Selecting another year updates the cards while all four charts retain 2016–2025. Selecting 2016 leaves ROCE blank. See [Power BI setup and validation](docs/powerbi_implementation.md) or the [Italian quick start](powerbi/START_HERE.it.md).
+
+### Run the SQL analysis
+
+Follow [PostgreSQL setup](docs/postgresql_setup.md) to create an empty table and import the committed CSV. Run `sql/02_data_checks.sql`, then the eight numbered queries in `sql/03_business_analysis.sql`. No raw workbook or Power BI installation is required for this route. The scripts were rerun successfully in an isolated **PostgreSQL 17** database on 21 October 2026.
+
+### Rebuild the source transformation
+
+1. Download both workbooks above into a local `data/raw/` folder.
+2. In Power BI Desktop or Excel, create a blank query and paste [power_query/basf_kpis.m](power_query/basf_kpis.m) into Advanced Editor.
+3. Set `RawFile` to your downloaded `10-year-summary-basf-ar25.xlsx` path and refresh.
+4. Check 90 rows, nine KPIs and the single missing 2016 ROCE observation.
+
+The original Power Query preview was reviewed, but a full exported Power Query result has not been compared automatically with the CSV. The independent workbook-to-CSV comparison covers all source observations.
+
+### Optional project maintenance
+
+Python is only needed to rebuild or check project definitions. From the repository root (tested with Python 3.12):
+
+```text
+python tools/check_powerbi_project.py
+python -m pip install jsonschema==4.26.0
+python tools/check_powerbi_project.py --schemas
+```
+
+The schema check requires internet access. It validates structure and embedded data; it does not execute DAX or render Power BI. To rebuild definitions after changing the CSV, see the [maintenance instructions](docs/powerbi_implementation.md); the builder overwrites authored definitions.
 
 ## Repository structure
 
 ```text
-data/
-  processed/     Clean financial dataset
-
-power_query/     Reproducible Power Query M script
-sql/             Table definition, data checks and analysis queries
-docs/            Sources, methodology, findings and limitations
-powerbi/         Approved design and native PBIP implementation
-tools/           Project assembly and structural validation
+data/processed/   Checked 90-row dataset
+power_query/     Original workbook transformation
+sql/             Table, import checks and eight business queries
+docs/            Sources, methodology, findings and validation
+powerbi/         PBIP, report/model definitions, DAX, assets and preview
+tools/           Definition builder, structural checker and background renderer
 ```
 
-The original Excel workbooks are kept locally in `data/raw/`, which is excluded from Git.
-
-## Reproducing the project
-
-1. Download the two official BASF workbooks and place them in `data/raw/`.
-2. Create a blank query in Power BI Desktop or Excel.
-3. Open Advanced Editor and paste `power_query/basf_kpis.m`.
-4. Set `RawFile` to the local path of the ten-year workbook and refresh.
-5. Verify the expected 90 rows and the missing ROCE value for 2016.
-6. Follow the [PostgreSQL setup instructions](docs/postgresql_setup.md) to create the table and import the processed CSV.
-7. Run the data checks, then execute the eight analysis queries individually.
-
-## Native Power BI report
-
-I built [the PBIP report](powerbi/BASF.pbip) with nine KPI cards, four history
-charts and a reporting-year selector. The single landscape page combines an
-emerald/teal geometric background, rounded cards, faded Ludwigshafen photographs
-and the original BASF logo.
-
-The report includes a portable snapshot of the processed CSV. Opening it does not
-require database credentials or machine-specific source paths. The original
-workbook-cleaning workflow remains the separate Power Query M script.
-
-I checked the report in Power BI Desktop: 2025 is selected initially, switching
-to 2024 updates the cards while the charts retain 2016–2025, and selecting 2016
-keeps the missing ROCE observation blank. I also ran the supplied DAX acceptance
-query and reported **22 PASS results**. The [validation record](docs/powerbi_implementation.md)
-distinguishes the screenshots reviewed from the DAX result reported in chat.
-Structural checks also confirmed the exact CSV snapshot and Microsoft JSON schema
-compliance. A native PDF export and final portfolio screenshots are still pending.
-
-For setup, metric definitions and the validation query, see the
-[Power BI implementation notes](docs/powerbi_implementation.md).
-
-## Remaining presentation work
-
-I will add a native PDF export and clean report screenshots for readers who do
-not use Power BI Desktop. The repository already contains the editable report
-and semantic model definitions.
+The native PDF and its rendered image show the 2025 view. The editable PBIP is included; a compiled PBIX is not. Asset sources and font licensing are recorded in [design credits](docs/powerbi_design.md). This is an independent portfolio project and does not imply BASF sponsorship.

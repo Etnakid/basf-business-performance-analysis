@@ -1,7 +1,7 @@
 // Create a blank query in Excel or Power BI, open Advanced Editor, and paste this script.
 // Change RawFile to the local path of the unchanged BASF ten-year workbook.
 let
-    RawFile = "C:\\path\\to\\data\\raw\\10y-overview-basf-ar25.xlsx",
+    RawFile = "C:\path\to\data\raw\10-year-summary-basf-ar25.xlsx",
     Source = Excel.Workbook(File.Contents(RawFile), null, true),
     Sheet = Source{[Item="10y-overview", Kind="Sheet"]}[Data],
     Header = Table.PromoteHeaders(Table.Skip(Sheet, 3), [PromoteAllScalars=true]),

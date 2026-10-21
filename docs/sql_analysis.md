@@ -76,7 +76,12 @@ including 2016 ROCE null, margin extrema, the 2021 sales growth rank, loss years
 and the visible 2024–2025 comparisons. This manual review was not a full
 automated comparison of every local output cell. The local table creation,
 import and initial count/null checks were verified earlier in the same session.
-Power BI dashboards and DAX remain the next phase.
+The native Power BI report is now implemented; see [implementation and validation](powerbi_implementation.md).
+
+On 21 October 2026, all three committed SQL files were rerun in a fresh, isolated
+PostgreSQL 17 database using the committed CSV. Import checks passed and Q1–Q8
+again returned 10, 10, 2, 10, 10, 9, 2 and 9 rows. The principal findings above
+matched the returned results. The owner's existing database was not modified.
 
 ## SQL references
 

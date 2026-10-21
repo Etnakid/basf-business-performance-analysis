@@ -31,10 +31,16 @@ See [implementation and validation](powerbi_implementation.md) for details.
 
 ## Export status
 
-The first supplied PDF was rendered and inspected: foreground values and charts
-were displaced relative to the background. It is not accepted for the portfolio
-and has not been published. The approved Desktop view is the reference while
-export alignment is resolved. No recreated image is presented as a native export.
+The first supplied PDF had displaced foreground values and charts and was not
+published. A subsequent native export supplied on 21 October 2026 was rendered
+and reviewed: the nine 2025 values match the CSV, the cards and four history
+charts align with the background, and labels and footer remain readable.
+
+The accepted [PDF](../powerbi/preview/report-2025.pdf) and its
+[rendered image](../powerbi/preview/report-2025.png) are included for portfolio
+review. The image is rendered directly from that PDF, not a recreated mockup.
+The export uses Italian numeric formatting (dot for thousands, comma for
+decimals); the underlying units and data are unchanged.
 
 ## Asset credits
 

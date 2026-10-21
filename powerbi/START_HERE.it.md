@@ -3,7 +3,8 @@
 Questo è il report nativo BASF approvato dopo la verifica in Power BI Desktop.
 Sono stati controllati il 2025, il cambio al 2024 e il ROCE 2016 mancante.
 Il proprietario del progetto ha eseguito la query DAX e comunicato 22 risultati PASS.
-Il PDF originale e le immagini finali del portfolio sono ancora da esportare.
+Il PDF nativo verificato e la sua immagine sono disponibili in `preview/`.
+Apri `preview/report-2025.pdf` per consultare il report senza Power BI.
 
 Mantieni insieme il file PBIP e le due cartelle del report e del modello.
 Il precedente file di preparazione non viene modificato.
