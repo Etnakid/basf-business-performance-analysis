@@ -52,7 +52,7 @@ advance = draw.textlength('Business Performance ', font=font)/S
 text(32+advance, 90, 'Analysis', 42, '#A5E96A')
 text(33, 151, '2016–2025 · A closer look at the industry shaping my city.', 13)
 text(1330, 27, 'L U D W I G S H A F E N', 11, '#EAF5E2')
-text(1370, 117, 'REPORT YEAR · default 2025', 10, '#EAF5E2')
+text(1370, 117, 'REPORT YEAR', 12, '#EAF5E2')
 draw.line((32*S, 195*S, 1568*S, 195*S), fill='#34572D', width=S)
 
 labels = [('Sales', ''), ('EBITDA', ''), ('EBIT', ''), ('Net income', ''),
@@ -84,8 +84,8 @@ for x,y,w,h,title in [(32,370,826,240,'Sales trajectory'),(872,370,696,240,'Prof
     text(x+w-111,y+16,'million EUR',10,'#A4B9AA')
 
 draw.line((32*S, 859*S, 1568*S, 859*S), fill='#28442D', width=S)
-text(32, 868, 'Source: BASF Report 2025 · Published figures include restatements; comparisons are not like-for-like.', 10, '#A4B9AA')
-text(32, 883, 'Margin: before special items. CapEx: asset additions, not cash payments. Photos and logo © BASF.', 9, '#97AF9B')
-text(1230, 874, 'INDEPENDENT PORTFOLIO PROJECT', 11, '#A6D18A')
+text(32, 864, 'Source: BASF Report 2025 · Published figures include restatements; comparisons are not like-for-like.', 12, '#B8CCB7')
+text(32, 882, 'Margin: before special items. CapEx: asset additions, not cash payments. Photos and logo © BASF.', 12, '#B8CCB7')
+text(1230, 872, 'INDEPENDENT PORTFOLIO PROJECT', 12, '#A6D18A')
 canvas.save(OUT/'background.png', optimize=True)
 print(OUT/'background.png')

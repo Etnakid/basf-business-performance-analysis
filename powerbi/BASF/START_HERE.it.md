@@ -1,12 +1,12 @@
 # Aprire il progetto BASF
 
-Questa è la versione V4 del progetto nativo Power BI, con titoli delle schede
-più grandi e in grassetto e disposizione corretta di numeri, unità e confronti.
-La V3 ha confermato il caricamento dello sfondo; gli spazi interni della V4
-vanno ancora verificati in Desktop. Il precedente file di preparazione
+Questa è la versione V5 del progetto nativo Power BI, con il 2025 preselezionato
+e note finali più leggibili. La V4 ha confermato titoli delle schede più grandi e
+in grassetto e separazione di numeri e unità. La selezione iniziale e le note V5
+vanno ancora verificate in Desktop. Il precedente file di preparazione
 non viene modificato.
 
-Pacchetto corretto V4: estrailo in una cartella nuova. Non sovrascrivere la prima
+Pacchetto corretto V5: estrailo in una cartella nuova. Non sovrascrivere la prima
 prova già aperta o aggiornata da Power BI. Chiudi quella finestra prima di aprire
 questo progetto. Se compare ancora l'avviso rosso sui metadati avanzati, non premere
 «Aggiorna report»: mostra l'avviso per proseguire con la diagnosi.
@@ -29,7 +29,7 @@ Se il doppio clic non apre il progetto, apri Power BI Desktop e usa
 Se compare un errore, conserva il testo completo: serve per correggere la
 compatibilità della definizione. Non eliminare righe o misure per tentativi.
 
-Al primo caricamento, senza selezione dell'anno, le schede devono mostrare il 2025:
+Al primo caricamento il selettore deve mostrare 2025 e le schede devono riportare:
 Sales 59.657; EBITDA 5.618; EBIT 1.634; Net income 1.619; margine 11,0%;
 OCF 5.610; FCF 1.342; investimenti 4.787; ROCE 5,8%.
 I valori monetari sono in milioni di euro.

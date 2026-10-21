@@ -37,6 +37,12 @@ fit the 136px text area in every card. V4 spacing still needs Desktop confirmati
 no user reconstruction of these elements is intended. Source observations and
 financial calculations are unchanged by the V4 layout fix.
 
+The V4 Desktop screenshot confirmed clear separation of values and units and
+legible bold headings. V5 preserves that card geometry, saves an explicit 2025
+slicer selection and enlarges the source/comparability footer to 12px. The saved
+selection also passed Microsoft's semantic-filter schema check. V5 initial
+selection and footer rendering still require Desktop review.
+
 ## Opening the project on Windows
 
 1. Extract the complete package with **Extract all**. Do not open files inside
@@ -88,8 +94,9 @@ are in `BASF.SemanticModel/model.bim`.
 
 History measures use `SELECTEDVALUE` after filtering to a single KPI. This avoids
 summing unlike units or accidentally showing a multi-year total as an annual
-value. Card measures explicitly apply the selected year. With no year selection,
-cards use the latest year, 2025; this default is labelled beside the selector.
+value. Card measures explicitly apply the selected year. The report opens with
+2025 saved as the slicer selection. If the selection is cleared, card measures
+fall back to the latest year, 2025.
 The dropdown permits 2016–2025, extending the prototype's 2024/2025 selection.
 
 Margin and ROCE are stored in percentage points: the format appends a literal
@@ -124,7 +131,7 @@ Completed outside Desktop:
   filenames and theme registration checked.
 - Decorative background rendered and visually inspected separately.
 
-**Pending in Desktop for V4:** reopen/refresh, callout/unit separation, full DAX acceptance tests, font rendering, chart
+**Pending in Desktop for V5:** reopen/refresh, visible 2025 selection and footer legibility, full DAX acceptance tests, font rendering, chart
 colours, negative profitability values, legends, label clipping, slicer operation,
 blank display, keyboard readability and final PDF/screenshot export. Run
 `BASF/verify_in_desktop.dax` in DAX Query View; it must return PASS on every row.

@@ -203,6 +203,13 @@ def build():
     visual('YearSelector', 'slicer', 1370, 138, 192, 55,
            {'Values': [projection('year', 'Report Year', True)]},
            {'data': obj(mode=lit('Dropdown')),
+            'general': obj(filter={'filter': {
+                'Version': 2,
+                'From': [{'Name': 'r', 'Entity': 'Report Year', 'Type': 0}],
+                'Where': [{'Condition': {'In': {
+                    'Expressions': [{'Column': {'Expression': {'SourceRef': {'Source': 'r'}}, 'Property': 'year'}}],
+                    'Values': [[{'Literal': {'Value': '2025L'}}]]}}}]
+            }}),
             'selection': obj(singleSelect=lit(True), selectAllCheckboxEnabled=lit(False)),
             'header': obj(show=lit(False)),
             'items': obj(fontColor=color('#EAF5E2'), background=color('#102818'),

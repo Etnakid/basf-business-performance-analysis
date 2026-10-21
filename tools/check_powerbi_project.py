@@ -69,6 +69,12 @@ def run(schemas=False):
                 table=tables[binding['Expression']['SourceRef']['Entity']]
                 assert binding['Property'] in {x['name'] for x in table['measures' if kind=='Measure' else 'columns']}, path
     assert len(visuals)==23
+    slicer = next(d for d in visuals if d['name']=='YearSelector')
+    selection = slicer['visual']['objects']['general'][0]['properties']['filter']['filter']
+    assert selection['From'] == [{'Name':'r','Entity':'Report Year','Type':0}]
+    condition = selection['Where'][0]['Condition']['In']
+    assert condition['Values'] == [[{'Literal':{'Value':'2025L'}}]], 'Initial year must be visibly selected'
+    assert condition['Expressions'][0]['Column']['Property'] == 'year'
     assert {d['name'] for d in visuals} == {p.name for p in (pagepath/'visuals').iterdir()}
     assert len(fact['measures'])==46
     if schemas:

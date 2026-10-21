@@ -13,7 +13,8 @@ A native PBIP implementation has since been prepared in `powerbi/BASF/`.
 Its definitions have passed structural/schema checks. The V2 Desktop review
 confirmed the 2025 values and native charts; V3 corrects the absent decorative
 background and font fallback. V3 rendering was confirmed; V4 addresses overlapping
-callouts/units and strengthens KPI headings. Final spacing and acceptance checks remain
+callouts/units and strengthens KPI headings. V4 spacing was confirmed; V5 sets an
+explicit initial 2025 selection and enlarges footer notes. Final V5 appearance and acceptance checks remain
 pending. See [implementation status and opening
 instructions](powerbi_implementation.md). The browser preview remains a separate
 design reference.
